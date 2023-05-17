@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/header"/>
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="316dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="Tanggal Pemesanan"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="443dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="320dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:hint="No. KTP"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="206dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="318dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="No. HP"
+        android:inputType="phone"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="380dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextTextPostalAddress"
+        android:layout_width="319dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="Alamat"
+        android:inputType="textPostalAddress"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="259dp" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/textInputEditText"
+        android:layout_width="317dp"
+        android:layout_height="42dp"
+        android:hint="Nama Lengkap"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="151dp" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="317dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="323dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="304dp"
+        android:layout_height="54dp"
+        android:background="@drawable/shape_rectangle"
+        android:text="Booking"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="595dp"
+        tools:ignore="MissingConstraints" />
+</android.support.constraint.ConstraintLayout>

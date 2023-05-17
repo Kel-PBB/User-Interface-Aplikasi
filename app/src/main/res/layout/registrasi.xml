@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="158dp"
+        android:layout_height="3dp"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints,VisualLintBounds"
+        tools:layout_editor_absoluteX="-29dp"
+        tools:layout_editor_absoluteY="529dp"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="158dp"
+        android:layout_height="3dp"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints,VisualLintBounds"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="529dp"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:background="@color/birtud"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:text="REGISTRASI"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="248dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_rectangle"
+        android:text="Google"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="564dp"
+        tools:ignore="HardcodedText,MissingConstraints">
+    </Button>
+
+
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="248dp"
+        android:layout_height="52dp"
+        android:background="@drawable/shape_rectangle"
+        android:text="Facebook"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="626dp"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="344dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="361dp"
+        tools:ignore="Autofill,HardcodedText,MissingConstraints" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="347dp"
+        android:layout_height="55dp"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="111dp"
+        tools:ignore="MissingConstraints">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Lengkap"
+            tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+    </android.support.design.widget.TextInputLayout>
+
+    <EditText
+        android:id="@+id/nohp"
+        android:layout_width="342dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="No. HP"
+        android:inputType="phone"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="296dp"
+        tools:ignore="Autofill,HardcodedText,MissingConstraints" />
+
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="342dp"
+        android:layout_height="42dp"
+        android:hint="Username"
+        tools:ignore="HardcodedText,MissingConstraints,TouchTargetSizeCheck"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="185dp" />
+
+    <EditText
+        android:id="@+id/EmailAddress"
+        android:layout_width="342dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="236dp"
+        tools:ignore="Autofill,HardcodedText,MissingConstraints" />
+
+    <Button
+        android:id="@+id/daftar"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:text="Daftar"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_rectangle"
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="442dp"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atau Masuk Dengan"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        tools:ignore="HardcodedText,MissingConstraints,SpUsage,TextSizeCheck"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="521dp" />
+
+</android.support.constraint.ConstraintLayout>
