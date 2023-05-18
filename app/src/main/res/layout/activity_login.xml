@@ -50,12 +50,13 @@
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_rectangle"
+        android:elevation="10dp"
         android:text="Login"
         android:textColor="#ffffff"
         tools:ignore="HardcodedText,MissingConstraints,VisualLintButtonSize"
         tools:layout_editor_absoluteX="22dp"
-        tools:layout_editor_absoluteY="591dp"
-        android:elevation="10dp"/>
+        tools:layout_editor_absoluteY="591dp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
