@@ -8,11 +8,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="93dp"
+        android:layout_height="60dp"
         android:background="@color/birtud"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="0dp"
         tools:ignore="MissingConstraints"
         android:gravity="">
 
@@ -21,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="Daftar"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -60,7 +58,7 @@
             android:id="@+id/NamaLengkap"
             android:hint="Name"
             android:inputType="textEmailAddress"
-            android:background="@drawable/roundedit"
+            android:background="@drawable/roundtop"
             android:layout_marginTop="10dp"/>
         <EditText
             style="@style/EditTextRegister"
@@ -81,7 +79,7 @@
             android:id="@+id/EditPasswordLogin"
             android:hint="Password"
             android:inputType="textPassword"
-            android:background="@drawable/roundedit"
+            android:background="@drawable/roundbottom"
             android:layout_marginTop="10dp"/>
 
         <androidx.cardview.widget.CardView

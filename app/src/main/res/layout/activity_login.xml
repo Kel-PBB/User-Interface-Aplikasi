@@ -21,20 +21,28 @@
         android:id="@+id/EditUsernameLogin"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:background="@drawable/roundedit"
+        android:background="@drawable/roundtop"
         android:focusable="true"
         android:focusableInTouchMode="true"/>
-    <EditText
-        style="@style/EditTextLogin"
-        android:id="@+id/EditPasswordLogin"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:background="@drawable/roundedit"
-        android:layout_marginTop="10dp"
-        android:elevation="20dp"
-        android:padding="10dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordInputLayout"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/EditTextLogin"
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:background="@drawable/roundbottom"
+            android:paddingStart="20dp"
+            android:hint="Password" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/btnLet"
@@ -58,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tidak punya akun? "
-            android:textSize="10dp"
+            android:textSize="13dp"
             android:textColor="@color/white"/>
         <TextView
             android:id="@+id/btndaftar"
@@ -66,7 +74,7 @@
             android:layout_height="wrap_content"
             android:text="Daftar"
             android:textStyle="bold"
-            android:textSize="10dp"
+            android:textSize="13dp"
             android:textColor="@color/white"
             android:clickable="true"
             android:onClick="onTextClicked"/>
@@ -80,7 +88,7 @@
 
         <View
             android:layout_width="0dp"
-            android:layout_height="3dp"
+            android:layout_height="2dp"
             android:layout_weight="1"
             android:background="@android:color/white" />
 
@@ -88,14 +96,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="atau masuk dengan"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:padding="10dp"
             android:textColor="@color/white"
             android:layout_gravity="center_vertical" />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="3dp"
+            android:layout_height="2dp"
             android:layout_weight="1"
             android:background="@android:color/white" />
 
