@@ -17,10 +17,7 @@
             android:name=".CatalogActivity"
             android:exported="false" />
         <activity
-            android:name=".SliderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CR"
+            android:name=".ProfileFragment"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

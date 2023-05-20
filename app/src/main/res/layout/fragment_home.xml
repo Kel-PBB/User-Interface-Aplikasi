@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -41,7 +42,7 @@
             android:layout_marginTop="-0dp"
             android:background="@drawable/carentalppb"
             tools:ignore="ContentDescription"
-            tools:layout_editor_absoluteX="26dp" />
+            tools:layout_editor_absoluteX="26dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,6 +53,225 @@
             android:textSize="15dp"
             android:textStyle="bold"
             tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+        <!--app:cardCornerRadius="5dp">-->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="18dp"
+                app:cardCornerRadius="5dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/mobil2"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="25dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="1952 Pretzel"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="65dp"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="Rp. 1.000.000,-"></TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="146dp"
+                app:cardCornerRadius="5dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/mobil1"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="25dp"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="VW Series 3, 1935"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="65dp"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="Rp. 1.000.000,-"></TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="273dp"
+                app:cardCornerRadius="5dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/mobil3"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="Beetle Convertible 1949"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="70dp"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="Rp. 1.000.000,-"></TextView>
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="18dp"
+                app:cardCornerRadius="5dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/mobil3"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="Beetle Convertible 1949"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="70dp"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="Rp. 1.000.000,-"></TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="146dp"
+                app:cardCornerRadius="5dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/mobil2"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="25dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="1952 Pretzel"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="65dp"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="Rp. 1.000.000,-"></TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="272dp"
+                app:cardCornerRadius="5dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/mobil1"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="25dp"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="VW Series 3, 1935"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="65dp"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:text="Rp. 1.000.000,-"></TextView>
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+
     </LinearLayout>
 
 </ScrollView>
