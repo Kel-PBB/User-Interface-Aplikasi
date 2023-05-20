@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.navigation_home -> replaceFragment(HomeFragment())
                 R.id.navigation_loc -> replaceFragment(LocationFragment())
                 R.id.navigation_notifications -> replaceFragment(NotificcationsFragment())
-                R.id.navigation_notifications -> replaceFragment(ProfileFragment())
+                R.id.navigation_profile -> replaceFragment(ProfileFragment())
 
                 else -> {
 
