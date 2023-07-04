@@ -29,5 +29,4 @@
         app:layout_constraintRight_toRightOf="parent">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
