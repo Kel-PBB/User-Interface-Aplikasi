@@ -26,7 +26,12 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:itemTextAppearanceActive="@style/BottomNavigationLabelStyle"
+        app:itemTextAppearanceInactive="@style/BottomNavigationLabelStyle"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemRippleColor="@color/birtud_trans"
+        app:itemIconTint="@color/color_tint_item">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 

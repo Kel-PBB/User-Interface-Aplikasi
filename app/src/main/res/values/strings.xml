@@ -15,4 +15,36 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_detail_mobil">detail_mobil</string>
+
+    <string-array name="saat_pengambilan">
+        <item>Bawa KTP, SIM A, dan dokumen-dokumen lain yang dibutuhkan oleh penyedia rental.</item>
+        <item>Saat Anda bertemu dengan staf rental, cek kondisi mobil dengan staf.</item>
+        <item>Setelah itu, baca dan tanda tangan perjanjian rental.</item>
+    </string-array>
+
+    <string-array name="sebelum_pesan">
+        <item>Pastikan untuk membaca syarat rental.</item>
+    </string-array>
+
+    <string-array name="setelah_anda_pesan">
+        <item>Penyedia akan menghubungi pengemudi melalui WhatsApp untuk meminta foto beberapa dokumen wajib.</item>
+    </string-array>
+
+    <string-array name="hari">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <!-- Add more options as needed -->
+    </string-array>
+    <string name="title_activity_form_pesanan">FormPesananActivity</string>
+
+
 </resources>

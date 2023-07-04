@@ -2,31 +2,72 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/logo"
+        android:label="CloudRent"
         android:supportsRtl="true"
         android:theme="@style/Theme.CloudRent"
         tools:targetApi="31">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Pesanan_List_Activity"
             android:exported="false" />
+        <activity
+            android:name=".SuccessActivity"
+            android:exported="false"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".FormPesananActivity"
+            android:exported="false"
+            android:parentActivityName=".DetailMobilActivity"
+            android:theme="@style/Theme.CloudRent.NoActionBar" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false"
+            android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait" /> <!-- <activity -->
+        <!-- android:name=".SeacrhActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:parentActivityName=".HomeActivity" -->
+        <!-- android:screenOrientation="portrait" /> -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DetailMobilActivity"
+            android:exported="false"
+            android:parentActivityName=".SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:parentActivityName=".Login"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Login"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CloudRent.NoActionBar" />
         <activity
             android:name=".LetsGo"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CloudRent.NoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CloudRent.NoActionBar"
             tools:ignore="DuplicateActivity" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

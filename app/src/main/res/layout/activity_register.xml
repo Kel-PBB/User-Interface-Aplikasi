@@ -6,136 +6,195 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/birtud"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        android:gravity="">
 
-        <TextView
-            android:id="@+id/textView2"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Daftar"
+        android:theme="@style/Theme.CloudRent.AppBarOverlay"
+        app:popupTheme="@color/white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/blue_rec"
+            android:orientation="vertical">
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
             android:layout_marginTop="20dp"
-            android:text="Daftar"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Selamat Datang!"
-            android:textSize="20dp"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:textColor="@color/birtud"
-            android:layout_gravity="center_vertical" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lengkapi data berikut dan akun CloudCar Anda akan terbuat"
-            android:textSize="15dp"
-            android:padding="10dp"
-            android:textColor="@color/birtud"
-            android:layout_gravity="center_vertical" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
 
-        <EditText
-            style="@style/EditTextRegister"
-            android:id="@+id/NamaLengkap"
-            android:hint="Name"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/roundtop"
-            android:layout_marginTop="10dp"/>
-        <EditText
-            style="@style/EditTextRegister"
-            android:id="@+id/Username"
-            android:hint="Username"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/roundedit"
-            android:layout_marginTop="10dp"/>
-        <EditText
-            style="@style/EditTextRegister"
-            android:id="@+id/Email"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/roundedit"
-            android:layout_marginTop="10dp"/>
-        <EditText
-            style="@style/EditTextRegister"
-            android:id="@+id/EditPasswordLogin"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:background="@drawable/roundbottom"
-            android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:text="Selamat Datang!"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            android:layout_marginTop="25dp">
-            <Button
-                android:id="@+id/daftar"
-                android:layout_width="230dp"
-                android:layout_height="50dp"
-                android:text="Daftar"
-                android:textColor="@color/white"
-                android:background="@drawable/shape_rectangle"
-                tools:ignore="HardcodedText,MissingConstraints"
-                android:elevation="20dp"
-                android:padding="10dp"/>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Lengkapi data berikut dan akun CloudCar Anda akan terbuat"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="20dp"
+                android:elevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/round_white"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/NamaLengkap"
+                        style="@style/EditTextRegister"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/roundtop"
+                        android:hint="Name"
+                        android:inputType="textEmailAddress" />
+                    <TextView
+                        android:id="@+id/textErrorName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="12sp"
+                        android:gravity="left"
+                        android:visibility="gone" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Username"
+                        style="@style/EditTextRegister"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/roundedit"
+                        android:hint="Username"
+                        android:inputType="textEmailAddress" />
+                    <TextView
+                        android:id="@+id/textErrorUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="12sp"
+                        android:gravity="left"
+                        android:visibility="gone" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Email"
+                        style="@style/EditTextRegister"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/roundedit"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress" />
+                    <TextView
+                        android:id="@+id/textErrorEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="12sp"
+                        android:gravity="left"
+                        android:visibility="gone" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/passwordInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:passwordToggleEnabled="true"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EditTextRegister"
+                            android:id="@+id/EditPassworRegister"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:background="@drawable/roundedit"
+                            android:paddingStart="20dp"
+                            android:hint="Password" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/textErrorPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="12sp"
+                        android:gravity="left"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/EditTextRegister"
+                        android:id="@+id/EditConfirmPasswordRegister"
+                        android:hint="Confirmation Password"
+                        android:inputType="textPassword"
+                        android:background="@drawable/roundbottom"
+                        android:layout_marginTop="10dp"/>
+                    <TextView
+                        android:id="@+id/textErrorConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="12sp"
+                        android:gravity="left"
+                        android:visibility="gone" />
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="14dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="4dp"
+                        android:layout_gravity="center">
+
+                        <Button
+                            android:id="@+id/daftar"
+                            android:layout_width="230dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/ripple_effect"
+                            android:text="Daftar"
+                            android:textColor="@color/white"
+                            tools:ignore="HardcodedText,MissingConstraints"
+                            android:onClick="registerme"/>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp"
-            android:gravity="center">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="@color/birtud" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="atau masuk dengan"
-                android:textSize="10dp"
-                android:padding="10dp"
-                android:textColor="@color/birtud"
-                android:layout_gravity="center_vertical" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="@color/birtud" />
-
-        </LinearLayout>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -146,7 +205,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sudah punya akun? "
-                android:textSize="10dp"
+                android:textSize="13sp"
                 android:textColor="@color/birtud"/>
             <TextView
                 android:id="@+id/btnmasuk"
@@ -154,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:text="Masuk"
                 android:textStyle="bold"
-                android:textSize="10dp"
+                android:textSize="15sp"
                 android:textColor="@color/birtud"
                 android:clickable="true"
                 android:onClick="onTextClicked"/>

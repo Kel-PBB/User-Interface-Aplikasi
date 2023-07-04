@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_mobil"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="10dp"
+    android:foreground="@drawable/card_ripple_effect"
+    android:background="@drawable/roundeditfocus">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/img_item_photo"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:src="@drawable/mobilbiru"
+                android:scaleType="fitXY">
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nama_mobil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/img_item_photo"
+                        android:text="Brio"
+                        android:textColor="@color/birtud"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="5dp"
+                        android:textStyle="bold"></TextView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp">
+
+                        <TextView
+                            android:id="@+id/brand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/nama_mobil"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@+id/img_item_photo"
+                            android:text="Toyota"
+                            android:textColor="@color/birtud_trans"
+                            android:textSize="12dp"
+                            android:layout_marginEnd="15dp"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:src="@drawable/steering_wheel_svgrepo_com"
+                                android:layout_marginEnd="5dp"/>
+
+                            <TextView
+                                android:id="@+id/transmisi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/nama_mobil"
+                                android:layout_alignParentTop="true"
+                                android:layout_toEndOf="@+id/img_item_photo"
+                                android:text="Manual"
+                                android:textColor="@color/birtud_trans"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginEnd="15dp">
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:src="@drawable/car_seat_with_seatbelt_svgrepo_com"
+                                android:layout_marginEnd="5dp"/>
+
+                            <TextView
+                                android:id="@+id/seat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/nama_mobil"
+                                android:layout_alignParentTop="true"
+                                android:layout_toEndOf="@+id/img_item_photo"
+                                android:text="5 Kursi"
+                                android:textColor="@color/birtud_trans"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:src="@drawable/engine_motor_svgrepo_com"
+                                android:layout_marginEnd="5dp"/>
+
+                            <TextView
+                                android:id="@+id/mesin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/nama_mobil"
+                                android:layout_alignParentTop="true"
+                                android:layout_toEndOf="@+id/img_item_photo"
+                                android:text="12000 CC"
+                                android:textColor="@color/birtud_trans"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/dash_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:layout_margin="2dp">
+            <TextView
+                android:id="@+id/harga_mobil"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nama_mobil"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/img_item_photo"
+                android:text="Rp. 266.000/hari"
+                android:textColor="@color/birtud"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

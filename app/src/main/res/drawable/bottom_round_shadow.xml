@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/white" />
+    <corners android:radius="16dp" />
+    <padding
+        android:top="4dp"
+        android:left="4dp"
+        android:right="4dp" />
+    <gradient
+        android:startColor="#08000000"
+        android:endColor="#00000000"
+        android:angle="90" />
+</shape>

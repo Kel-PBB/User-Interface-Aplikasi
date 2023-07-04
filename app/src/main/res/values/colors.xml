@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="birtud">#09315f</color>
     <color name="birmud">#2c74B3</color>
+    <color name="birtud_trans">#8498AF</color>
+    <color name="birtud_trans_trans">#e6eaef</color>
+    <color name="putih_trans_trans">#EDF0F3</color>
+    <color name="red">#C41E3A</color>
 </resources>

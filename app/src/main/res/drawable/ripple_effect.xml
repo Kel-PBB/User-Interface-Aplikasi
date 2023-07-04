@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/birtud_trans">
+
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/birtud" />
+            <corners android:radius="10dp" />
+            <size
+                android:width="250dp"
+                android:height="100dp"/>
+        </shape>
+    </item>
+
+</ripple>

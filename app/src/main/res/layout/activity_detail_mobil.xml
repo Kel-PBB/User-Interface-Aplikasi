@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".DetailMobilActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.CloudRent.AppBarOverlay"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/birtud"
+                app:titleCentered="false"
+                app:title="Nama Mobil"
+                app:titleTextColor="@color/white"
+                android:theme="@style/Theme.CloudRent.AppBarOverlay"
+                app:popupTheme="@color/birtud" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:id="@+id/content"
+            android:layout_above="@+id/cons"
+            android:layout_below="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/gambar_mobil"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@color/birtud" />
+
+                    <LinearLayout
+                        android:id="@+id/syarat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        tools:ignore="UnknownId">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="20dp"
+                            android:elevation="8dp"
+                            app:cardCornerRadius="16dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/mobil_gam"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="160dp"
+                                    android:background="@drawable/round_white"
+                                    android:padding="30dp"
+                                    android:src="@drawable/mobilbiru" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:src="@drawable/dash_line" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp">
+
+                                    <TextView
+                                        android:id="@+id/brand"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/nama_mobil"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_marginStart="20dp"
+                                        android:layout_marginEnd="15dp"
+                                        android:layout_toEndOf="@+id/img_item_photo"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="Toyota"
+                                        android:textColor="@color/birtud_trans"
+                                        android:textSize="14dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="15dp"
+                                        android:gravity="center">
+
+                                        <ImageView
+                                            android:layout_width="15dp"
+                                            android:layout_height="15dp"
+                                            android:layout_marginEnd="5dp"
+                                            android:src="@drawable/steering_wheel_svgrepo_com" />
+
+                                        <TextView
+                                            android:id="@+id/transmisi"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/nama_mobil"
+                                            android:layout_alignParentTop="true"
+                                            android:layout_toEndOf="@+id/img_item_photo"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:text="Manual"
+                                            android:textColor="@color/birtud_trans"
+                                            android:textSize="14dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="15dp"
+                                        android:gravity="center">
+
+                                        <ImageView
+                                            android:layout_width="15dp"
+                                            android:layout_height="15dp"
+                                            android:layout_marginEnd="5dp"
+                                            android:src="@drawable/car_seat_with_seatbelt_svgrepo_com" />
+
+                                        <TextView
+                                            android:id="@+id/seat"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/nama_mobil"
+                                            android:layout_alignParentTop="true"
+                                            android:layout_toEndOf="@+id/img_item_photo"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:text="5 Kursi"
+                                            android:textColor="@color/birtud_trans"
+                                            android:textSize="14dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="15dp"
+                                        android:gravity="center">
+
+                                        <ImageView
+                                            android:layout_width="15dp"
+                                            android:layout_height="15dp"
+                                            android:layout_marginEnd="5dp"
+                                            android:src="@drawable/engine_motor_svgrepo_com" />
+
+                                        <TextView
+                                            android:id="@+id/mesin"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/nama_mobil"
+                                            android:layout_alignParentTop="true"
+                                            android:layout_toEndOf="@+id/img_item_photo"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:text="12000 CC"
+                                            android:textColor="@color/birtud_trans"
+                                            android:textSize="14dp" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gambar_mobil"
+                    android:orientation="vertical"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:src="@drawable/warning_sign_svgrepo_com" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-black"
+                                android:text="informasi Penting"
+                                android:textColor="@color/birtud" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Sebelum Anda Pesan" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/sebelum_pesan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Setelah Anda Pesan" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/setelah_anda_pesan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Saat Pengambilan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/saat_pengambilan"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gambar_mobil"
+                    android:orientation="vertical"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:src="@drawable/warning_sign_svgrepo_com" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-black"
+                                android:text="informasi Penting"
+                                android:textColor="@color/birtud" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Sebelum Anda Pesan" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/sebelum_pesan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Setelah Anda Pesan" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/setelah_anda_pesan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Saat Pengambilan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/saat_pengambilan"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gambar_mobil"
+                    android:orientation="vertical"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:src="@drawable/warning_sign_svgrepo_com" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-black"
+                                android:text="informasi Penting"
+                                android:textColor="@color/birtud" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Sebelum Anda Pesan" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/sebelum_pesan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Setelah Anda Pesan" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/setelah_anda_pesan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Saat Pengambilan"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:text="@array/saat_pengambilan"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/cons"
+        android:paddingTop="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundtop_birtud_trans_trans"
+        android:gravity="bottom">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            app:cardCornerRadius="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:textSize="11sp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Total Hari"/>
+
+                        <TextView
+                            android:id="@+id/total_hari"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="3 Hari"
+                            android:fontFamily="sans-serif-medium"
+                            android:textSize="13sp"
+                            android:textColor="@color/birtud"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:textSize="11sp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Harga/hari"/>
+
+                        <TextView
+                            android:id="@+id/harga_hari"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Rp. 500.000"
+                            android:fontFamily="sans-serif-medium"
+                            android:textSize="13sp"
+                            android:textColor="@color/birtud"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/dash_line" />
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:gravity="center"
+                        android:layout_marginBottom="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Harga Total"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/harga_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rp. 1.500.000"
+                        android:fontFamily="sans-serif-black"
+                        android:textSize="25sp"
+                        android:textColor="@color/birtud"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnPesan"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ripple_effect"
+                    android:elevation="10dp"
+                    android:text="pesan sekarang"
+                    android:textColor="#ffffff"
+                    tools:ignore="HardcodedText,MissingConstraints,VisualLintButtonSize"
+                    tools:layout_editor_absoluteX="22dp"
+                    tools:layout_editor_absoluteY="591dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/progressBar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/white">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</RelativeLayout>

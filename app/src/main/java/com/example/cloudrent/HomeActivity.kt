@@ -1,22 +1,38 @@
 package com.example.cloudrent
 
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cloudrent.databinding.ActivityHomeBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.cloudrent.response.Mobil
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), HomeFragment.DataPassListener {
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var recyclerView: RecyclerView
+    private var isLoggedIn = false
+    private var isBackPressedOnce = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(HomeFragment())
+
+        val sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val ediSaveLogin = sharedPreferences.edit()
+
+        if (sharedPreferences.getString("Status", "Off") == "On") {
+            isLoggedIn = true
+        }
+
 
         binding.bottonnav.setOnItemSelectedListener {
 
@@ -34,10 +50,69 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDataPass(token: String, tanggal_mulai: String, tanggal_selesai: String, waktu: String) {
+        // Start the SearchActivity and pass the data
+        val intent = Intent(this, SearchActivity::class.java).apply {
+            putExtra("token", token)
+            putExtra("tanggal_mulai", tanggal_mulai)
+            putExtra("tanggal_selesai", tanggal_selesai)
+            putExtra("waktu", waktu)
+        }
+        startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        if (isLoggedIn) {
+            if (isBackPressedOnce) {
+                // Close the application
+                super.onBackPressed()
+            } else {
+                // Show a warning dialog
+                showExitConfirmationDialog()
+            }
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    private fun showExitConfirmationDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Exit Application")
+        alertDialog.setMessage("Are you sure you want to close the application?")
+        alertDialog.setPositiveButton("Yes") { dialog: DialogInterface, _: Int ->
+            isBackPressedOnce = true
+            dialog.dismiss()
+            finishAffinity()
+        }
+        alertDialog.setNegativeButton("No") { dialog: DialogInterface, _: Int ->
+            dialog.dismiss()
+        }
+        alertDialog.show()
+    }
+
+    fun onSomeButtonClicked(view: View) {
+        // Handle button click
+    }
+
     private fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.nav_host, fragment)
         fragmentTransaction.commit()
+    }
+
+    fun intoSearch(view: View) {
+        val intent = Intent(this, SeacrhActivity::class.java)
+        startActivity(intent)
     }
 }
