@@ -40,7 +40,7 @@ class SearchAdapter (private  val context: Context, private val dataList: ArrayL
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.tvNama.text = dataList[position].nama
         holder.tvBrand.text = dataList[position].brand
-        holder.tvHarga.text = "Rp. "+ dataList[position].harga + "/hari"
+        holder.tvHarga.text = dataList[position].harga
         holder.tvSeat.text = dataList[position].seat + " seat"
         holder.tvMesin.text = dataList[position].mesin + " CC"
         holder.tvTransmisi.text = dataList[position].transmisi

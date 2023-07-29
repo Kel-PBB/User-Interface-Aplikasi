@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.cloudrent.R
+import com.makeramen.roundedimageview.RoundedImageView
 
 class SliderAdapter(private val slides: List<Int>) : RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
 
@@ -18,10 +20,12 @@ class SliderAdapter(private val slides: List<Int>) : RecyclerView.Adapter<Slider
 
     override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
         val slideImage = holder.itemView.findViewById<ImageView>(R.id.img_slider)
-        slideImage.setImageResource(slides[position])
+        val actualPosition = position % slides.size
+        val currentPosition = if(actualPosition == 0) slides.lastIndex else  actualPosition - 1
+        slideImage.setImageResource(slides[actualPosition])
     }
 
     override fun getItemCount(): Int {
-        return slides.size
+        return Int.MAX_VALUE
     }
 }

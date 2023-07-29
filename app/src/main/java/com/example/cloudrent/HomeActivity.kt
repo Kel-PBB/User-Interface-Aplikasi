@@ -35,13 +35,11 @@ class HomeActivity : AppCompatActivity(), HomeFragment.DataPassListener {
 
 
         binding.bottonnav.setOnItemSelectedListener {
-
             when(it.itemId){
                 R.id.navigation_home -> replaceFragment(HomeFragment())
                 R.id.navigation_loc -> replaceFragment(LocationFragment())
                 R.id.navigation_notifications -> replaceFragment(NotificcationsFragment())
                 R.id.navigation_profile -> replaceFragment(ProfileFragment())
-
                 else -> {
 
                 }
@@ -109,10 +107,5 @@ class HomeActivity : AppCompatActivity(), HomeFragment.DataPassListener {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.nav_host, fragment)
         fragmentTransaction.commit()
-    }
-
-    fun intoSearch(view: View) {
-        val intent = Intent(this, SeacrhActivity::class.java)
-        startActivity(intent)
     }
 }

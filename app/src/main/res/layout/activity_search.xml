@@ -16,35 +16,57 @@
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
-            app:navigationIcon="@drawable/back_arrow"
+            app:titleTextAppearance="@style/ToolbarTitleStyle"
             android:id="@+id/toolbar_search"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
-            app:titleCentered="true"
+            app:subtitle="20 September - 20 September 2023"
+            app:subtitleTextAppearance="@style/ToolbarSubTitleStyle"
+            app:subtitleTextColor="@color/birtud_trans"
             app:title="Hasil Pencarian"
             android:textAlignment="center"
             app:titleTextColor="@color/birtud"
             android:theme="@style/Theme.CloudRent.AppBarOverlay"
-            app:popupTheme="@color/birtud"
-            app:layout_scrollFlags="scroll|enterAlways"/>
+            app:popupTheme="@color/birtud" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <RelativeLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/search_ket"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="@drawable/round_botom_white">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewSkeleton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/skeleton_card_mobil_home" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/recyclerViewMobil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/card_mobil_home" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,95 +74,45 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tgl_mulai"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/birtud_trans"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="20 September 2023"
-                        android:textSize="13dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/birtud_trans"
-                        android:fontFamily="sans-serif-medium"
-                        android:text=" - "
-                        android:textSize="13dp"/>
-
-                    <TextView
-                        android:id="@+id/tgl_selesai"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/birtud_trans"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="20 September 2023 "
-                        android:textSize="13dp"/>
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/jam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/birtud_trans"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="14:30 "
-                    android:textSize="13dp"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/search_ket"
-            android:layout_marginTop="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/card_mobil_home" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/error_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-                <ImageView
-                    android:layout_gravity="center"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/baseline_signal_wifi_connected_no_internet_4_24">
-                </ImageView>
-
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/birtud"
-                    android:textSize="16dp"
-                    android:fontFamily="sans-serif-black"
+                    android:id="@+id/error_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Periksa Jaringan Internet Anda"/>
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/baseline_signal_wifi_connected_no_internet_4_24">
+                    </ImageView>
+
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/birtud"
+                        android:textSize="16dp"
+                        android:fontFamily="sans-serif-black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Periksa Jaringan Internet Anda"/>
+                </LinearLayout>
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/progressBar"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:background="@color/birtud_trans_trans"-->
+<!--                    android:layout_height="match_parent">-->
+<!--                    <ProgressBar-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:layout_gravity="center" />-->
+<!--                </LinearLayout>-->
+
             </LinearLayout>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone" />
-        </LinearLayout>
-
-    </RelativeLayout>
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

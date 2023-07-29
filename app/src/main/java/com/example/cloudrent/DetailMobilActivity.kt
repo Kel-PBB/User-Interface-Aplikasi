@@ -1,24 +1,48 @@
 package com.example.cloudrent
 
+import ShimmerHelper
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewStub
+import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.core.view.forEach
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.response.*
 import com.example.cloudrent.variabel.SpesifikasiVariabel
+import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
 import retrofit2.Call
@@ -27,11 +51,14 @@ import retrofit2.Response
 import java.text.NumberFormat
 import java.util.*
 
-class DetailMobilActivity : AppCompatActivity() {
+class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
+    private lateinit var mapView: MapView
+    private lateinit var googleMap: GoogleMap
     private  lateinit var progressBar: LinearLayout
-    private lateinit var harga: TextView
-    private lateinit var totalHari: TextView
+    private lateinit var harga: String
+    private lateinit var totalHari: String
     private lateinit var totalHarga: TextView
+    private lateinit var totalHargaR: String
     private lateinit var manual: TextView
     private lateinit var seat: TextView
     private lateinit var mesin: TextView
@@ -39,46 +66,64 @@ class DetailMobilActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var gambar: ImageView
     private lateinit var btnPesan: Button
+    private lateinit var btnRincian: ImageView
+    private lateinit var shimerImageMobil: ShimmerFrameLayout
+//    private lateinit var content: LinearLayout
+    private lateinit var content: ScrollView
+    private lateinit var cons: LinearLayout
+    private lateinit var shimmerHelpers: ShimmerHelper
+    private lateinit var shimmerBackground: LinearLayout
 
     private lateinit var recyclerView: RecyclerView
-    val DatamSpek = listOf<SpesifikasiVariabel>(
-        SpesifikasiVariabel(
-            R.drawable.img_mesin,
-            judul_spek = "Bahan Bakar",
-            isi_spek = "Bensin"
-        ),
-        SpesifikasiVariabel(
-            R.drawable.img_mesin,
-            judul_spek = "Mesin",
-            isi_spek = "Mesin"
-        ),
-        SpesifikasiVariabel(
-            R.drawable.img_seater,
-            judul_spek = "Seater",
-            isi_spek = "Seater"
-        )
-    )
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_mobil)
 
-        progressBar = findViewById(R.id.progressBar_detail)
-        harga = findViewById(R.id.harga_hari)
+        mapView = findViewById(R.id.mapViewCar)
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync(this)
+
+//        shimerImageMobil = findViewById(R.id.shimmer_layout_mobil_image)
+//        val skeleton = LayoutInflater.from(this).inflate(R.layout.skeleton_detail_mobil, null)
+//        shimerImageMobil.addView(skeleton)
+//        shimerImageMobil.startShimmer()
+//        progressBar = findViewById(R.id.progressBar_detail)
+//        harga = findViewById(R.id.harga_hari)
         manual = findViewById(R.id.transmisi)
         seat = findViewById(R.id.seat)
         mesin = findViewById(R.id.mesin)
         brand = findViewById(R.id.brand)
-        totalHari = findViewById(R.id.total_hari)
-        totalHarga = findViewById(R.id.harga_total)
+//        totalHari = findViewById(R.id.total_hari)
+        totalHarga = findViewById(R.id.harga_total_a)
         toolbar = findViewById(R.id.toolbar_detail)
         gambar = findViewById(R.id.mobil_gam)
+        // Find all ShimmerFrameLayout views in the layout and apply shimmer animation
+        val rootView = findViewById<ViewGroup>(android.R.id.content)
+        applyShimmerToAllShimmerFrames(rootView)
+        btnRincian = findViewById(R.id.show_rincian)
         val btnPesan: Button = findViewById(R.id.btnPesan)
+        val s_pesan: TextView = findViewById(R.id.arra_sebelum_pesan)
+        val s_pesan_array = resources.getStringArray(R.array.sebelum_pesan)
+        val s_pesan_text = s_pesan_array.joinToString("\n")
+        s_pesan.text = s_pesan_text
+
+        val se_pesan: TextView = findViewById(R.id.array_setelah_pesan)
+        val se_pesan_array = resources.getStringArray(R.array.setelah_anda_pesan)
+        val se_pesan_text = se_pesan_array.joinToString("\n")
+        se_pesan.text = se_pesan_text
+
+        val se_pengam: TextView = findViewById(R.id.arra_saat_pengambilan)
+        val se_pengam_array = resources.getStringArray(R.array.saat_pengambilan)
+        val se_pengam_text = se_pengam_array.joinToString("\n")
+        se_pengam.text = se_pengam_text
 
         val toolbar: MaterialToolbar = findViewById(R.id.toolbar_detail)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        toolbar.setNavigationIcon(R.drawable.baseline_keyboard_arrow_left_24)
+        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.white))
         toolbar.setNavigationOnClickListener() {
             onBackPressed()
         }
@@ -88,6 +133,11 @@ class DetailMobilActivity : AppCompatActivity() {
         val mobil_id = intent.getStringExtra("mobil_id").toString()
 
         detailMobil(token, kode_mobil)
+
+        btnRincian.setOnClickListener{
+            showDialog()
+        }
+
 
         btnPesan.setOnClickListener {
             val intent = Intent(this, FormPesananActivity::class.java).apply {
@@ -101,7 +151,7 @@ class DetailMobilActivity : AppCompatActivity() {
     }
 
     private fun detailMobil(token: String, kode_mobil: String) {
-        progressBar.visibility = View.VISIBLE
+//        progressBar.visibility = View.VISIBLE
         val apiService = ApiClient.create(token)
         apiService.detailMobil(kode_mobil).enqueue(object : Callback<MobilDetail> {
                 override fun onResponse(call: Call<MobilDetail>, response: Response<MobilDetail>) {
@@ -111,8 +161,18 @@ class DetailMobilActivity : AppCompatActivity() {
                         val search = responseDataList?.search
                         val total = responseDataList?.total
                         val days = responseDataList?.days
+                        val rootView = findViewById<ViewGroup>(android.R.id.content)
+                        stopShimmerForAllShimmerFrames(rootView)
                         updateUI(mobil, search, total, days)
-                        progressBar.visibility = View.GONE
+//                        Handler().postDelayed({
+//                            shimerImageMobil.stopShimmer()
+//                            content.visibility = View.VISIBLE
+//                            cons.visibility = View.VISIBLE
+//                            shimerImageMobil.visibility = View.GONE
+//                        }, 2000)
+//                        shimerImageMobil.hideShimmer()
+
+//                        progressBar.visibility = View.GONE
                         // Process the successful response
                     } else {
                         val errorMessage = response.errorBody()?.string()
@@ -121,24 +181,115 @@ class DetailMobilActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<MobilDetail>, t: Throwable) {
-                    progressBar.visibility = View.GONE
+//                    progressBar.visibility = View.GONE
                     Log.e("SearchMobil", t.stackTraceToString())
                     Toast.makeText(this@DetailMobilActivity, "An error occurred", Toast.LENGTH_SHORT)
                         .show()
                 }
             })
     }
+    // Function to apply shimmer animation to all ShimmerFrameLayout views in the layout
+    private fun applyShimmerToAllShimmerFrames(viewGroup: ViewGroup) {
+        applyShimmerToViewGroup(viewGroup)
+    }
+
+    // Recursive function to apply shimmer animation to all ShimmerFrameLayout views in a ViewGroup
+    private fun applyShimmerToViewGroup(viewGroup: ViewGroup) {
+        val childCount = viewGroup.childCount
+        for (i in 0 until childCount) {
+            val childView = viewGroup.getChildAt(i)
+            if (childView is ShimmerFrameLayout) {
+                visibleChild(childView)
+                childView.startShimmer()
+            } else if (childView is ViewGroup) {
+                applyShimmerToViewGroup(childView)
+            }
+        }
+    }
+
+    private fun visibleChild(viewGroup: ViewGroup){
+        val childCount = viewGroup.childCount
+        for(i in 0 until childCount){
+            val childView = viewGroup.getChildAt(i)
+            if(childView is LinearLayout){
+                childView.visibility = View.VISIBLE
+            }else if(childView is ViewGroup){
+                goneChild(childView)
+            }
+        }
+    }
+
+    // Function to stop shimmer animation for all ShimmerFrameLayout views in the layout
+    private fun stopShimmerForAllShimmerFrames(viewGroup: ViewGroup) {
+        stopShimmerForViewGroup(viewGroup)
+    }
+
+    // Recursive function to stop shimmer animation and hide the <include> view in a ViewGroup
+    private fun stopShimmerForViewGroup(viewGroup: ViewGroup) {
+        val childCount = viewGroup.childCount
+        for (i in 0 until childCount) {
+            val childView = viewGroup.getChildAt(i)
+            if (childView is ShimmerFrameLayout) {
+                childView.stopShimmer()
+                childView.hideShimmer()
+//                childView.visibility = View.GONE
+                goneChild(childView)
+                // Find and hide the <include> view if found inside the ShimmerFrameLayout
+            } else if (childView is ViewGroup) {
+                stopShimmerForViewGroup(childView)
+            }
+        }
+    }
+
+    private fun goneChild(viewGroup: ViewGroup){
+        val childCount = viewGroup.childCount
+        for(i in 0 until childCount){
+            val childView = viewGroup.getChildAt(i)
+            if(childView is LinearLayout && childView.tag == "hide"){
+                childView.visibility = View.GONE
+            }else if(childView is ViewGroup){
+                goneChild(childView)
+            }
+        }
+    }
+
+
+    private fun showDialog(){
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.bottomsheetlllayout)
+        val jmlhHari = dialog.findViewById<TextView>(R.id.total_hari)
+        val hargaHari = dialog.findViewById<TextView>(R.id.harga_hari)
+        val totalHarga = dialog.findViewById<TextView>(R.id.harga_total)
+
+        val btnClose = dialog.findViewById<ImageView>(R.id.close_btn)
+
+        btnClose.setOnClickListener{
+            dialog.hide()
+        }
+//
+        jmlhHari.setText(totalHari)
+        hargaHari.setText(harga)
+        totalHarga.setText(totalHargaR)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+
+        dialog.show()
+    }
 
     private fun updateUI(mobil: MobilClass?, search: Search?, total: Int?, days: Int?){
         toolbar.setTitle(mobil?.nama)
-        harga.setText("IDR "+ mobil?.harga)
+        harga = mobil?.harga.toString()
         val hargaTot = formatNumber(total)
         val gambar_rl = "https://cloudrental.my.id/storage/" + mobil?.gambar
         Picasso.get()
             .load(gambar_rl)
             .into(gambar)
         totalHarga.setText("IDR " + hargaTot)
-        totalHari.setText(days.toString() + " hari")
+        totalHargaR = hargaTot
+        totalHari = days.toString()
         brand.setText(mobil?.brand)
         manual.setText(mobil?.transmisi)
         seat.setText(mobil?.seat + " seat")
@@ -148,6 +299,36 @@ class DetailMobilActivity : AppCompatActivity() {
     private fun formatNumber(number: Int?): String{
         val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault())
         return numberFormat.format(number)
+    }
+
+    override fun onMapReady(map: GoogleMap) {
+        googleMap = map
+
+        googleMap.uiSettings.isZoomControlsEnabled = true
+
+        val sydney = LatLng(-33.8852, 151.211)
+        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12f))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
     }
 //    private fun ShowSpekMahasiswa() {
 //        val adapter = SpesifikasiAdapter(card_spek = DatamSpek){

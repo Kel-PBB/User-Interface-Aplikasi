@@ -1,8 +1,8 @@
 package com.example.cloudrent
 
-import android.app.Activity
-import android.widget.ArrayAdapter
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,23 +15,30 @@ import android.content.Context
 import android.content.Intent
 import android.text.InputType
 import com.example.cloudrent.adapter.SearchAdapter
-import com.example.cloudrent.network.ApiClient
 import java.text.SimpleDateFormat
 import java.util.*
-import android.content.SharedPreferences
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
+import android.text.format.DateUtils.isToday
+import android.view.Window
 import android.view.WindowManager
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import com.example.cloudrent.adapter.FaqAdapter
 import com.example.cloudrent.adapter.SliderAdapter
-import com.example.cloudrent.databinding.ActivitySeacrhBinding
-import com.example.cloudrent.response.Mobil
-import com.example.cloudrent.response.SearchResponse
+import com.example.cloudrent.network.ApiClient
+import com.example.cloudrent.response.ResponseBeranda
+import com.example.cloudrent.variabel.QuestVariabel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.properties.Delegates
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.core.content.ContextCompat
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import java.text.ParseException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,14 +61,27 @@ class HomeFragment : Fragment() {
     private lateinit var spinerHari : Spinner
     private lateinit var hariVal : String
     private lateinit var dataPassListener: DataPassListener
+    private lateinit var totalPesanan: TextView
     private var selectedValue: String? = null
+    private lateinit var totttP: LinearLayout
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var rvViewPager: RecyclerView
     private var adapter: SearchAdapter? = null
-    private lateinit var binding: ActivitySeacrhBinding
 
     private var param1: String? = null
     private var param2: String? = null
+
+    val DataQuest = listOf<QuestVariabel>(
+        QuestVariabel(
+            quest = "Cara Pemesanan Mobil?"
+        ),
+        QuestVariabel(
+            quest = "Syarat Rental Mobil?"
+        ),QuestVariabel(
+            quest = "Tips Penjemputan Mobil"
+        )
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,10 +105,35 @@ class HomeFragment : Fragment() {
         eDateMBox = view.findViewById(R.id.TanggalMulai)
         eDateSBox = view.findViewById(R.id.TanggalSelesai)
         eTimeBox = view.findViewById(R.id.waktujemput)
-        spinerHari = view.findViewById(R.id.spinner_hari)
+//        spinerHari = view.findViewById(R.id.spinner_hari)
+        totalPesanan = view.findViewById(R.id.total_pesanan)
+        totttP = view.findViewById(R.id.frame_total_pes)
+
+//        skeletonRvFaq = view.findViewById(R.id.skeletonrvFaq)
+//        skeletonViewPager = view.findViewById(R.id.skeletonViewPager)
+
+
         val btnPesan = view.findViewById<ImageButton>(R.id.myButton)
         val spinerhari = view.findViewById<Spinner>(R.id.spinner_hari)
         val btnCari = view.findViewById<Button>(R.id.btnCari)
+
+        val displayItems = arrayOf("1 hari", "2 hari", "3 hari", "4 hari", "5 hari", "6 hari","7 hari","8 hari", "9 hari", "10 hari")
+        val values = intArrayOf(1,2,3,4,5,6,7,8,9,10)
+
+        val adapterSpiner = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, displayItems)
+        adapterSpiner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinerhari.adapter = adapterSpiner
+
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.rvFaq)
+        recyclerView.setHasFixedSize(true)
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = FaqAdapter(requireContext(), DataQuest){}
+
+        val sharedPreferences = requireContext().getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val token = sharedPreferences.getString("AuthToken", "") ?: ""
+        beranda(token)
 
         eDateMBox.inputType = InputType.TYPE_NULL
         eDateSBox.inputType = InputType.TYPE_NULL
@@ -114,7 +159,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                val selectedValue = spinerhari.selectedItem.toString()
+                val selectedValue = values[spinerhari.selectedItemPosition].toString()
                 val selectedDate = s.toString()
                 if (selectedDate.isNotEmpty() && selectedValue.isNotEmpty()) {
                     val hari = selectedValue.toInt()
@@ -172,10 +217,25 @@ class HomeFragment : Fragment() {
         }
 
         // Create a list of slide images (resource IDs)
-        val slides = listOf(R.drawable.carentalppb, R.drawable.mobil3, R.drawable.mobil1)
+        val slides = listOf(R.drawable.carentalppb, R.drawable.screenshot, R.drawable.mobil1)
 
         val sliderAdapter = SliderAdapter(slides)
         viewPager.adapter = sliderAdapter
+        viewPager.clipToPadding = false
+        viewPager.clipChildren = false
+        viewPager.offscreenPageLimit = 3
+        viewPager.getChildAt(0)?.overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+
+        val compositePageTransformer = CompositePageTransformer()
+        compositePageTransformer.addTransformer(MarginPageTransformer(20))
+        compositePageTransformer.addTransformer(ViewPager2.PageTransformer { page, position ->
+            val r = 1 - Math.abs(position)
+            page.scaleY = 0.85f + r * 0.15f
+        })
+
+        viewPager.setPageTransformer(compositePageTransformer)
+        viewPager.setCurrentItem(Int.MAX_VALUE/2, false)
+
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         return view
     }
@@ -232,22 +292,17 @@ class HomeFragment : Fragment() {
         dataPassListener.onDataPass(token, tanggal_mulai, tanggal_selesai, waktu)
     }
 
-    private fun startSearchActivity(token: String, tanggal_mulai: String, tanggal_selesai: String, waktu: String) {
-        val intent = Intent(requireActivity(), SeacrhActivity::class.java).apply {
-            putExtra("token", token)
-            putExtra("tanggal_mulai", tanggal_mulai)
-            putExtra("tanggal_selesai", tanggal_selesai)
-            putExtra("waktu", waktu)
-        }
-        startActivity(intent)
-    }
 
-
+    @SuppressLint("UseRequireInsteadOfGet")
     private fun showTimePicker() {
         val cal = Calendar.getInstance()
         val hour = cal.get(Calendar.HOUR_OF_DAY)
         val minute = cal.get(Calendar.MINUTE)
         eTimeBox = view!!.findViewById(R.id.waktujemput)
+
+
+        val selectedDate = getSelectedDate()
+        val currentDate = Calendar.getInstance()
 
         val timePickerDialog = TimePickerDialog(
             requireContext(),
@@ -260,7 +315,71 @@ class HomeFragment : Fragment() {
             true
         )
 
+        if (selectedDate != null && isToday(selectedDate) && currentDate.get(Calendar.HOUR_OF_DAY) < hour + 12) {
+            val maxHour = hour + 12
+            val maxMinute = if (currentDate.get(Calendar.HOUR_OF_DAY) + 1 == maxHour) {
+                currentDate.get(Calendar.MINUTE)
+            } else {
+                59
+            }
+            timePickerDialog.updateTime(maxHour, maxMinute)
+        }
+
+
         timePickerDialog.show()
+    }
+
+    private fun getSelectedDate(): Calendar? {
+        val selectedDateString = eDateMBox.text.toString()
+        val dateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
+        val selectedDate = Calendar.getInstance()
+
+        try {
+            selectedDate.time = dateFormat.parse(selectedDateString)!!
+            return selectedDate
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
+    private fun isToday(date: Calendar): Boolean {
+        val today = Calendar.getInstance()
+        return date.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+                date.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+                date.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)
+    }
+
+    private fun beranda(token: String)
+    {
+        val apiService = ApiClient.create(token)
+        apiService.beranda().enqueue(object : Callback<ResponseBeranda>{
+            override fun onResponse(
+                call: Call<ResponseBeranda>,
+                response: Response<ResponseBeranda>
+            ) {
+                if(response.isSuccessful){
+                    val responseData = response.body()?.jumlah_pesanan
+                    updateUi(responseData)
+                }else{
+                    Toast.makeText(requireContext(), "Gagal Memuat", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<ResponseBeranda>, t: Throwable) {
+                Toast.makeText(requireContext(), "Gagal Memuat", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun updateUi(jmlhPesanan: Int?){
+        if(jmlhPesanan!! > 100){
+            totalPesanan.setText("99+")
+        }else if(jmlhPesanan!! ==0){
+            totttP.visibility = View.GONE
+        } else{
+            totalPesanan.setText(jmlhPesanan.toString())
+        }
     }
     private fun showDatePicker(editText: EditText) {
         val cal = Calendar.getInstance()

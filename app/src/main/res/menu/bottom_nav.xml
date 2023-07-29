@@ -3,17 +3,17 @@
     <item
         android:title="@string/title_home"
         android:id="@+id/navigation_home"
-        android:icon="@drawable/outline_home_24"/>
+        android:icon="@drawable/noun_home_2111244"/>
     <item
-        android:title="@string/title_locations"
+        android:title="Call Center"
         android:id="@+id/navigation_loc"
-        android:icon="@drawable/outline_location_on_24" />
+        android:icon="@drawable/noun_headphone_1155235" />
     <item
         android:title="@string/title_notifications"
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/outline_notifications_24"/>
+        android:icon="@drawable/noun_notification_1040087"/>
     <item
         android:title="@string/title_profile"
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/outline_account_circle_24"/>
+        android:icon="@drawable/noun_account_1517208"/>
 </menu>

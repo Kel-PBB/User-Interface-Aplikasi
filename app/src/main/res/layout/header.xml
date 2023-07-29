@@ -46,20 +46,52 @@
 
         <LinearLayout
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/myButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/circle_birtud_ripple"
-                android:gravity="center"
-                android:scaleType="fitCenter"
-                android:padding="10dp"
-                android:src="@drawable/baseline_shopping_cart_24"
-                android:textColor="@android:color/white"
-                android:drawableTop="@drawable/baseline_shopping_cart_24"/>
+                <ImageButton
+                    android:id="@+id/myButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circle_birtud_ripple"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:padding="10dp"
+                    android:src="@drawable/baseline_shopping_cart_24"
+                    android:textColor="@android:color/white"
+                    android:drawableTop="@drawable/baseline_shopping_cart_24"/>
+                <LinearLayout
+                    android:id="@+id/frame_total_pes"
+                    android:layout_width="match_parent"
+                    android:gravity="end"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:paddingStart="8dp"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="8dp"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/circle_white_outline"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/total_pesanan"
+                            android:gravity="center"
+                            android:textSize="10sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/white"
+                            android:text="8"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
 

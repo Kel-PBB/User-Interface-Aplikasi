@@ -5,7 +5,10 @@
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
             <solid android:color="@color/birtud" />
-            <corners android:radius="10dp" />
+            <corners android:topRightRadius="50dp"
+                android:topLeftRadius="50dp"
+                android:bottomRightRadius="50dp"
+                android:bottomLeftRadius="50dp"/>
             <size
                 android:width="250dp"
                 android:height="100dp"/>

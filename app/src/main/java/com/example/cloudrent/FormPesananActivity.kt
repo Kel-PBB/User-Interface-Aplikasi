@@ -3,6 +3,7 @@ package com.example.cloudrent
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,9 +13,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.response.*
+import com.example.cloudrent.variabel.PemesanVariabel
 import com.google.android.material.textfield.TextInputEditText
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +40,11 @@ class FormPesananActivity : AppCompatActivity() {
     private lateinit var email: TextInputEditText
     private lateinit var btnPesan: Button
     private lateinit var noHp: TextInputEditText
+    private lateinit var btnUserAddPemesan: CardView
+    private var newPemesan: PemesanVariabel? = null
+    private lateinit var errorNama: TextView
+    private lateinit var errorNomor: TextView
+    private lateinit var errorEmail: TextView
 
     private lateinit var wktu: String
     private lateinit var tgl_r_m: String
@@ -51,6 +61,8 @@ class FormPesananActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        toolbar.setNavigationIcon(R.drawable.baseline_keyboard_arrow_left_24)
+        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.white))
         toolbar.setNavigationOnClickListener(){
             onBackPressed()
         }
@@ -67,6 +79,10 @@ class FormPesananActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar_detail)
         btnPesan = findViewById(R.id.btnPesan)
         noHp = findViewById(R.id.no_hp)
+        btnUserAddPemesan = findViewById(R.id.btnUserAddAsPemesan)
+        errorEmail = findViewById(R.id.textErrorEmail)
+        errorNama = findViewById(R.id.textErrorName)
+        errorNomor = findViewById(R.id.textErrorNomor)
 
         val token = intent.getStringExtra("token").toString()
         val nama_mobil = intent.getStringExtra("nama_mobil").toString()
@@ -76,7 +92,17 @@ class FormPesananActivity : AppCompatActivity() {
 
         pesanForm(token)
 
+        btnUserAddPemesan.setOnClickListener {
+            newPemesan?.let { pemesanVariabel ->
+                namaPemesan.setText(pemesanVariabel.nama)
+                email.setText(pemesanVariabel.email)
+            }
+        }
+
         btnPesan.setOnClickListener {
+            errorNomor.visibility = View.GONE
+            errorEmail.visibility = View.GONE
+            errorNama.visibility = View.GONE
             val nama_pemesan = namaPemesan.text.toString()
             val id_mobil = mobil_id.toInt()
             val waktuu = parseTimeStringTo(wktu)
@@ -103,9 +129,23 @@ class FormPesananActivity : AppCompatActivity() {
                     val intent = Intent(this@FormPesananActivity, SuccessActivity::class.java)
                     startActivity(intent)
                 }else{
+                    val errorResponse = response.errorBody()?.string()
+                    val errorJson = JSONObject(errorResponse)
+                    val errors = errorJson.getJSONObject("errors")
+                    for (key in errors.keys())
+                    {
+                        val errorArray = errors.getJSONArray(key)
+                        val errorMessage = errorArray.getString(0)
 
-                    val errorMessage = response.errorBody()?.string()
-                    Toast.makeText(this@FormPesananActivity, waktu_pengambilan, Toast.LENGTH_SHORT).show()
+                        val textViewError = when (key) {
+                            "email_pemesan" -> findViewById<TextView>(R.id.textErrorEmail)
+                            "no_hp" -> findViewById<TextView>(R.id.textErrorNomor)
+                            "nama_pemesan" -> findViewById<TextView>(R.id.textErrorName)
+                            else -> null
+                        }
+                        textViewError?.text = errorMessage
+                        textViewError?.visibility = View.VISIBLE
+                    }
                 }
             }
                 override fun onFailure(call: Call<ResponseTambahPesanan>, t: Throwable) {
@@ -162,8 +202,9 @@ class FormPesananActivity : AppCompatActivity() {
         val tglS = parseDate(search!!.tanggal_selesai)
         val jam = parseTimeString(search!!.jam_pengembalian)
 
-        namaPemesan.setText(user!!.name)
-        email.setText(user!!.email)
+//        namaPemesan.setText(user!!.name)
+//        email.setText(user!!.email)
+        newPemesan = PemesanVariabel(user?.name ?:"", user?.email ?:"")
 
         tglMulai.setText(tglM)
         tglSelesai.setText(tglS)

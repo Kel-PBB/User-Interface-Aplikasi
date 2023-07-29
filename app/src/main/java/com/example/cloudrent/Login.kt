@@ -9,6 +9,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,8 @@ class Login : AppCompatActivity() {
 
     private lateinit var inputEmail: TextInputEditText
     private lateinit var inputPassword: TextInputEditText
+    private lateinit var errorM: LinearLayout
+    private lateinit var progressBar: LinearLayout
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,13 @@ class Login : AppCompatActivity() {
 
         val emailT = findViewById<TextInputEditText>(R.id.email_login)
         val passwordT = findViewById<TextInputEditText>(R.id.password_login)
+        progressBar = findViewById(R.id.progressBar)
+        val intent = intent
+        if(intent.hasExtra("toastMessage")){
+            val message = intent.getStringExtra("toastMessage")
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
+        errorM = findViewById(R.id.errorLogin)
 
         val sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
         val ediSaveLogin = sharedPreferences.edit()
@@ -55,6 +65,8 @@ class Login : AppCompatActivity() {
     }
 
     private fun loginUser(email: String, password: String){
+        progressBar.visibility = View.VISIBLE
+        errorM.visibility = View.GONE
             val loginRequest = LoginRequest(email, password)
             val logincall = apiService.loginUser(loginRequest)
             logincall.enqueue(object : Callback<ResponseUserLogin> {
@@ -74,12 +86,14 @@ class Login : AppCompatActivity() {
                         finish()
                     }else{
                         val errorMessage = response.errorBody()?.string()
-                        Toast.makeText(this@Login, email, Toast.LENGTH_SHORT).show()
+                        progressBar.visibility = View.GONE
+                        errorM.visibility = View.VISIBLE
                     }
                 }
                 override fun onFailure(call: Call<ResponseUserLogin>, t: Throwable) {
+                    progressBar.visibility = View.GONE
                     Log.e("Insert", t.stackTraceToString())
-                    Toast.makeText(this@Login, "An error occurred",
+                    Toast.makeText(this@Login, "Periksa Jaringan Internet Anda",
                         Toast.LENGTH_SHORT).show()
                 }
             })

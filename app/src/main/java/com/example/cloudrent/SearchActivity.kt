@@ -5,7 +5,9 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
@@ -15,14 +17,18 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.cloudrent.adapter.SearchAdapter
-import com.example.cloudrent.databinding.ActivitySeacrhBinding
+import com.example.cloudrent.adapter.SkeletonAdapter
 import com.example.cloudrent.databinding.ActivitySearchBinding
 import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.response.Mobil
 import com.example.cloudrent.response.SearchResponse
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import retrofit2.Call
@@ -38,54 +44,81 @@ import java.util.*
 class SearchActivity : AppCompatActivity(), HomeFragment.DataPassListener {
 
     private lateinit var binding: ActivitySearchBinding
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var rvMobil: RecyclerView
     private lateinit var adapter: SearchAdapter
-    private lateinit var progressBar: ProgressBar
+    private lateinit var progressBar: LinearLayout
     private lateinit var errorText: LinearLayout
+    private lateinit var swipe: SwipeRefreshLayout
+    private lateinit var simmer_layout: ShimmerFrameLayout
+    private lateinit var rvSkeleton: RecyclerView
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySearchBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_search)
 
         errorText = findViewById(R.id.error_text)
+        swipe = findViewById(R.id.swipe_search)
+        simmer_layout = findViewById(R.id.shimmer_layout)
+        rvSkeleton = findViewById(R.id.recyclerViewSkeleton)
+
+        rvMobil = findViewById(R.id.recyclerViewMobil)
+        adapter = SearchAdapter(this@SearchActivity, arrayListOf())
+        rvMobil.adapter = adapter
+        rvMobil.setHasFixedSize(true)
+
+//        rvSkeleton = findViewById(R.id.recyclerViewSkeleton)
+//        rvSkeleton.adapter = adapterSkeleton
+        val skeletonItemCount = 5
+        rvSkeleton.layoutManager = LinearLayoutManager(this)
+        val adapterSkeleton = SkeletonAdapter(skeletonItemCount)
+        rvSkeleton.adapter = adapterSkeleton
+        Log.d("Debug", "Number of child views: ${simmer_layout.childCount}") // Check the number of child views
+        simmer_layout.startShimmer()
 
         val toolbar: MaterialToolbar = findViewById(R.id.toolbar_search)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        toolbar.setNavigationIcon(R.drawable.baseline_keyboard_arrow_left_24)
+        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.birtud))
         toolbar.setNavigationOnClickListener() {
             onBackPressed()
         }
 
-        val appBarLayout = findViewById<AppBarLayout>(R.id.appBarLayout)
-        appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-            val istoolbar = (verticalOffset == 0)
-            toolbar.visibility = if (istoolbar) View.VISIBLE else View.INVISIBLE
-        })
+//        val appBarLayout = findViewById<AppBarLayout>(R.id.appBarLayout)
+//        appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+//            val istoolbar = (verticalOffset == 0)
+//            toolbar.visibility = if (istoolbar) View.VISIBLE else View.INVISIBLE
+//        })
 
-        val tgl_mulai = findViewById<TextView>(R.id.tgl_mulai)
-        val tgl_selesai = findViewById<TextView>(R.id.tgl_selesai)
-        val jam = findViewById<TextView>(R.id.jam)
 
-        progressBar = findViewById(R.id.progressBar)
+//        progressBar = findViewById(R.id.progressBar)
 
         val token = intent.getStringExtra("token").toString()
         val tanggalMulai = intent.getStringExtra("tanggal_mulai").toString()
         val tanggalSelesai = intent.getStringExtra("tanggal_selesai").toString()
         val waktu = intent.getStringExtra("waktu").toString()
 
+        val tgl_Pencarian = parseDate(tanggalMulai) + " - " + parseDate(tanggalSelesai)
+        toolbar.setSubtitle(tgl_Pencarian)
+
+//        tgl_mulai.setText(parseDate(tanggalMulai))
+//        tgl_selesai.setText(parseDate(tanggalSelesai))
+//        jam.setText(parseTimeString(waktu))
         searchMobil(token, tanggalMulai, tanggalSelesai, waktu)
+        swipe.setOnRefreshListener {
+//            skeletonview.showSkeleton()
+            searchMobil(token, tanggalMulai, tanggalSelesai, waktu)
+//            swipe.isRefreshing = false
+        }
 
-        tgl_mulai.setText(parseDate(tanggalMulai))
-        tgl_selesai.setText(parseDate(tanggalSelesai))
-        jam.setText(parseTimeString(waktu))
 
-        adapter = SearchAdapter(this@SearchActivity, arrayListOf())
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.setHasFixedSize(true)
+//        adapter = SearchAdapter(this@SearchActivity, arrayListOf())
+//        binding.recyclerView.adapter = adapter
+//        binding.recyclerView.setHasFixedSize(true)
+//        binding.recyclerView.setHasFixedSize(true)
+//        skeletonview.showSkeleton()
     }
 
     override fun onDataPass(
@@ -127,7 +160,7 @@ class SearchActivity : AppCompatActivity(), HomeFragment.DataPassListener {
     }
 
     private fun searchMobil(token: String, tanggalM: String, tanggalS: String, waktu: String) {
-        progressBar.visibility = View.VISIBLE
+//        progressBar.visibility = View.VISIBLE
         val apiService = ApiClient.create(token)
         apiService.searchMobil(tanggalM, tanggalS, waktu)
             .enqueue(object : Callback<SearchResponse> {
@@ -135,22 +168,29 @@ class SearchActivity : AppCompatActivity(), HomeFragment.DataPassListener {
                     call: Call<SearchResponse>,
                     response: Response<SearchResponse>
                 ) {
-                    progressBar.visibility = View.GONE
+//                    progressBar.visibility = View.GONE
+//                    skeletonview.showOriginal()
+                    swipe.isRefreshing = false
                     if (response.isSuccessful) {
                         val responseDataList = response.body()?.mobil
                         val search = response.body()?.search
                         if (responseDataList != null) {
                             setDataToAdapter(responseDataList)
                         }
+                        rvMobil.visibility = View.VISIBLE
+                        simmer_layout.stopShimmer()
+                        simmer_layout.visibility = View.GONE
 
                     } else {
                         val errorMessage = response.errorBody()?.string()
+//                        skeletonview.showOriginal()
                         Toast.makeText(this@SearchActivity, errorMessage, Toast.LENGTH_LONG).show()
                     }
                 }
 
                 override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                    progressBar.visibility = View.GONE
+//                    progressBar.visibility = View.GONE
+//                    skeletonview.showOriginal()
                     errorText.visibility = View.VISIBLE
                     Log.e("SearchMobil", t.stackTraceToString())
                     Toast.makeText(this@SearchActivity, "An error occurred", Toast.LENGTH_SHORT)

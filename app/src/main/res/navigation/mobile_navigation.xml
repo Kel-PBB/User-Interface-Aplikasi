@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_loc"
         android:name="com.example.cloudrent.LocationFragment"
-        android:label="@string/title_locations"
+        android:label="Call Center"
         tools:layout="@layout/fragment_location" />
 
     <fragment

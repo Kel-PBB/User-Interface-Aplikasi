@@ -1,8 +1,11 @@
 package com.example.cloudrent.network
 
+import android.net.Uri
 import com.example.cloudrent.response.*
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
+import java.io.File
 
 interface ApiService {
     @Headers("Accept: application/json")
@@ -56,4 +59,33 @@ interface ApiService {
     @Headers("Accept: application/json")
     @GET("api/pesanan/list")
     fun pesananList(): Call<ResponsePesanans>
+
+    @Headers("Accept: application/json")
+    @GET("api/user/profile")
+    fun userProfile(): Call<ResponseUserProfile>
+
+    @Headers("Accept: application/json")
+    @POST("api/logout")
+    fun logout(): Call<ResponseLogout>
+
+    @Headers("Accept: application/json")
+    @GET("api/beranda")
+    fun beranda(): Call<ResponseBeranda>
+
+    @Headers("Accept: application/json")
+    @GET("api/pesanan/show/{kode_pesanan}")
+    fun pesananShow(
+        @Path("kode_pesanan") kode_pesanan: String
+    ): Call<ResponsePesananShow>
+
+    @Headers("Accept: application/json")
+    @Multipart
+    @POST("api/invoice/buktiTransfer")
+    fun uploadBukti(
+        @Part gambar: MultipartBody.Part
+    ): Call<ResponseUploadBukti>
+
+    @Headers("Accept: application/json")
+    @GET("api/notification/index")
+    fun notificationList(): Call<ResponseNotifications>
 }

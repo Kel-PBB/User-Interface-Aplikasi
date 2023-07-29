@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_marginEnd="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/frame_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_white_outline"
+            android:elevation="8dp"
+            android:gravity="end"
+            android:layout_gravity="end"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+                <TextView
+                    android:id="@+id/total_pesanan_per"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="end"
+                    android:padding="3dp"
+                    android:text="8"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10dp"
+            android:translationY="5dp"
+            android:translationX="-7dp"
+            android:id="@+id/card_menu"
+            android:elevation="4dp"
+            app:cardCornerRadius="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
+            android:clipToPadding="false"
+            android:foreground="@drawable/card_ripple_effect"
+            app:cardBackgroundColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="35dp">
+
+
+                <TextView
+                    android:id="@+id/judul_menu"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/birtud"
+                    android:textSize="13sp"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Semua"
+                    tools:ignore="MissingConstraints" />
+
+        </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>

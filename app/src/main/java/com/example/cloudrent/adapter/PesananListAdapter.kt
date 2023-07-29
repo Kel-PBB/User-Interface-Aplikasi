@@ -1,36 +1,32 @@
 package com.example.cloudrent.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cloudrent.DetailMobilActivity
+import com.example.cloudrent.PesananDetailActivity
+import com.example.cloudrent.PesananJemputDetailActivity
 import com.example.cloudrent.R
-import com.example.cloudrent.response.Mobil
 import com.example.cloudrent.response.Pesanans
-import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
 import java.time.temporal.ChronoUnit
 import java.util.Date
 import java.util.Locale
 
 class PesananListAdapter (private  val context: Context, private val dataList: ArrayList<Pesanans>):
     RecyclerView.Adapter<PesananListAdapter.MyViewHolder>(){
-
-
     class MyViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val tvNama = view.findViewById<TextView>(R.id.namaMobil)
         val tvHari = view.findViewById<TextView>(R.id.hari)
@@ -41,6 +37,7 @@ class PesananListAdapter (private  val context: Context, private val dataList: A
         val tvTglPesan = view.findViewById<TextView>(R.id.tglPesan)
         val tvStatus = view.findViewById<TextView>(R.id.status)
         val cardPesanan = view.findViewById<CardView>(R.id.card_pesanan_list)
+        val cardMenu = view.findViewById<CardView>(R.id.card_menu)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -69,27 +66,51 @@ class PesananListAdapter (private  val context: Context, private val dataList: A
         holder.tvTglPesan.text = tglP
 
         holder.cardPesanan.setOnClickListener{
-//            val intent = Intent(context, DetailMobilActivity::class.java).apply {
-//                putExtra("kode_mobil", dataList[position].kode_mobil)
-//                putExtra("mobil_id", dataList[position].id.toString())
-//            }
-//            context.startActivity(intent)
-            Toast.makeText(context, tglP, Toast.LENGTH_SHORT).show()
+            if(dataList[position].status.id.equals(2)){
+                val intent = Intent(context, PesananDetailActivity::class.java).apply {
+                    putExtra("kode_pesanan", dataList[position].kode_pesanan)
+                }
+                context.startActivity(intent)
+            }else if(dataList[position].status.id.equals(3)){
+                val intent = Intent(context, PesananJemputDetailActivity::class.java).apply {
+                    putExtra("kode_pesanan", dataList[position].kode_pesanan)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 
     override fun getItemCount(): Int = dataList.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<Pesanans>) {
         dataList.clear()
         dataList.addAll(data)
         notifyDataSetChanged()
     }
 
+    fun checkDatalist(): StatusInfo {
+        val first = dataList.firstOrNull()?.status_id
+        val allstatus = dataList.all { it.status_id == first }
+        val statusIds = dataList.map { it.status_id }.distinct()
+        Toast.makeText(context, first, Toast.LENGTH_SHORT).show()
+        if(allstatus){
+            return (StatusInfo(allstatus, first))
+        }else{
+            return StatusInfo(allstatus, null)
+        }
+    }
+
+    data class StatusInfo(val status: Boolean, val first: String?)
+
+    fun clearData(){
+        dataList.clear()
+    }
+
     private  fun parseDate(dateString: String): String
     {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("EEEE, dd MMM yyyy", Locale.getDefault())
 
         val date: Date = inputFormat.parse(dateString) ?: return ""
         return outputFormat.format(date)

@@ -41,12 +41,11 @@
                 tools:ignore="ContentDescription,MissingConstraints" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="20dp"
                 android:elevation="8dp"
-                app:cardCornerRadius="8dp">
-
+                app:cardCornerRadius="16dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -55,37 +54,85 @@
                     android:padding="20dp"
                     android:background="@drawable/round_white">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        style="@style/EditTextLogin"
-                        android:id="@+id/email_login"
-                        android:hint="Email"
-                        android:inputType="textEmailAddress"
-                        android:background="@drawable/roundtop"
-                        android:focusable="true"
+                    <LinearLayout
+                        android:id="@+id/errorLogin"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_marginEnd="5dp"
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/baseline_info_red_24"/>
+                        <TextView
+                            android:id="@+id/textErrorName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Username atau password salah"
+                            android:textColor="@color/red"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/editTextNim"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:focusableInTouchMode="true"/>
+                        android:background="@drawable/roundtop"
+                        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="20dp"
+                            android:id="@+id/email_login"
+                            android:layout_height="40dp"
+                            android:hint="Email"
+                            android:textColorHint="@color/birtud_trans"
+                            android:textColor="@color/birtud"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:inputType="textEmailAddress"
+                            android:focusable="true"
+                            android:background="@null"
+                            android:focusableInTouchMode="true"
+                            tools:ignore="HardcodedText" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/passwordInputLayout"
-                        android:layout_width="250dp"
+                        android:layout_width="match_parent"
+                        android:paddingTop="10dp"
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true"
-                        app:hintEnabled="false">
+                        android:background="@drawable/roundbottom">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/EditTextLogin"
-                            android:id="@+id/password_login"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="20dp"
+                            android:id="@+id/password_login"
+                            android:layout_height="40dp"
                             android:inputType="textPassword"
-                            android:background="@drawable/roundbottom"
-                            android:paddingStart="20dp"
+                            android:textSize="16sp"
+                            android:textColorHint="@color/birtud_trans"
+                            android:textColor="@color/birtud"
+                            android:fontFamily="sans-serif-medium"
+                            android:focusable="true"
+                            android:background="@null"
                             android:hint="Password" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
 
                     <Button
+                        android:textAllCaps="false"
                         android:id="@+id/btnLogin"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
@@ -122,6 +169,20 @@
                     android:clickable="true"
                     android:onClick="onTextClicked"/>
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@color/white"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/birtud_trans_trans"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LocationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text_location"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="This is Location fragment"
-        android:textAlignment="center"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.CloudRent.AppBarOverlay"
+            app:elevation="0dp">
 
-</FrameLayout>
+            <com.google.android.material.appbar.MaterialToolbar
+                app:titleTextAppearance="@style/ToolbarTitleStyle"
+                android:id="@+id/toolbar_form_pesanan"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/birtud"
+                app:title="Call Center"
+                android:textAlignment="center"
+                app:titleTextColor="@color/white"
+                android:theme="@style/Theme.CloudRent.AppBarOverlay"
+                app:popupTheme="@color/birtud"
+                app:layout_scrollFlags="scroll|enterAlways"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/whatsapp"
+                android:foreground="@drawable/card_ripple_effect"
+                android:background="@color/birtud_trans_trans"
+                android:clickable="true"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:elevation="8dp"
+                app:cardCornerRadius="16dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_weight="0.6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/birtud_trans"
+                            android:textSize="13dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Anda butuh bantuan?"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/birtud"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Mulai Chat Whatsapp Sekarang!"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_weight="0.9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="120dp"
+                        android:src="@drawable/chat"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/birtud_trans"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Paling Sering Ditanyakan"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPertanyaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_pertanyaan"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

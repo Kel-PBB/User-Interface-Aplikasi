@@ -23,6 +23,8 @@
         <item>Setelah itu, baca dan tanda tangan perjanjian rental.</item>
     </string-array>
 
+    <string name="notifikasi_konfirmasi">Pesanan dengan ID %1s pada tanggal %2s telah dikonfirmasi oleh admin. Segera lakukan pembayaran untuk melanjutkan pesanan</string>
+
     <string-array name="sebelum_pesan">
         <item>Pastikan untuk membaca syarat rental.</item>
     </string-array>

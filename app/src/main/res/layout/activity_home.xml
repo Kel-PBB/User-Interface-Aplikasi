@@ -31,6 +31,12 @@
         app:itemTextAppearanceInactive="@style/BottomNavigationLabelStyle"
         app:itemHorizontalTranslationEnabled="false"
         app:itemRippleColor="@color/birtud_trans"
+        android:elevation="16dp"
+        android:translationZ="10dp"
+        app:labelVisibilityMode="labeled"
+        android:outlineProvider="background"
+        app:compatShadowEnabled="true"
+        app:itemTextColor="@color/color_tint_item"
         app:itemIconTint="@color/color_tint_item">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

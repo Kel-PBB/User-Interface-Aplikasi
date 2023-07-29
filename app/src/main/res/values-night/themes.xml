@@ -27,6 +27,16 @@
         <item name="iconGravity">textStart</item>
     </style>
 
+    <style name="ToolbarTitleStyle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="ToolbarSubTitleStyle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="EditTextRegister.">
         <item name="android:layout_height">50dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -44,7 +54,7 @@
 
 <!--    Bottom Navigation text Style-->
     <style name="BottomNavigationLabelStyle" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:textSize">12sp</item> <!-- Adjust the text size as desired -->
+        <item name="android:textSize">11sp</item> <!-- Adjust the text size as desired -->
         <item name="android:textStyle">bold</item> <!-- Replace with the desired color -->
         <!-- Add more attributes as needed -->
     </style>

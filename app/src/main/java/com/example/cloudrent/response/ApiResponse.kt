@@ -17,6 +17,41 @@ data class ResponseUserRegister(
     @SerializedName("status") val status: String
 )
 
+data class ResponseUploadBukti(
+    @SerializedName("message") val message: String
+)
+
+data class ResponseUserProfile(
+    @SerializedName("profile") val profile: UserProfile
+)
+
+data class ResponsePesananShow(
+    @SerializedName("pesanan_detail") val pesanan: Pesanans,
+    @SerializedName("invoice") val invoice: Invoice
+)
+
+data class ResponseLogout(
+    @SerializedName("message") val message: String
+)
+data class UserProfile(
+    @SerializedName("id") val id: Int,
+    @SerializedName("name") val name: String,
+    @SerializedName("kode_user") val kode_user: String,
+    @SerializedName("username") val username: String,
+    @SerializedName("email") val email: String,
+    @SerializedName("email_verified_at") val email_verified_at: String,
+    @SerializedName("two_factor_confirmed_at") val two_factor_confirmed_at: String,
+    @SerializedName("profile_photo_path") val profile_photo_path: String,
+    @SerializedName("created_at") val created_at: String,
+    @SerializedName("updated_at") val updated_at: String,
+    @SerializedName("profile_photo_url") val profile_photo_url: String
+)
+
+data class ResponseBeranda(
+    @SerializedName("jumlah_pesanan") val jumlah_pesanan: Int,
+    @SerializedName("jumlah_notifications") val jumlah_notifications: Int,
+)
+
 data class ResponseUserLogin(
     @SerializedName("token") val token: String,
     @SerializedName("status") val status: String
@@ -31,6 +66,36 @@ data class SearchResponse(
     @SerializedName("mobil") val mobil: List<Mobil>,
     @SerializedName("message") val message: String,
     @SerializedName("search") val search: Search
+)
+
+data class Notification(
+    @SerializedName("id") val id: String,
+    @SerializedName("type") val type: String,
+    @SerializedName("notifiable_type") val notifiableType: String,
+    @SerializedName("notifiable_id") val notifiableId: Int,
+    @SerializedName("data") val data: NotificationData,
+    @SerializedName("read_at") val readAt: String?,
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("updated_at") val updatedAt: String
+)
+
+data class NotificationData(
+    @SerializedName("pesanan") val pesanan: Pesanan,
+    @SerializedName("kode_pesanan") val kodePesanan: String
+)
+
+data class Invoice(
+    @SerializedName("id") val int: Int,
+    @SerializedName("no_invoice") val no_invoice: String,
+    @SerializedName("pesanan_id") val pesanan_id: Int,
+    @SerializedName("nama_bank") val nama_bank: String,
+    @SerializedName("norek") val norek: String,
+    @SerializedName("total") val total: String,
+    @SerializedName("gambar_invoice") val gambar_invoice: String,
+    @SerializedName("status_id") val status_id: Int,
+    @SerializedName("created-at") val created_at: String,
+    @SerializedName("updated_at") val updated_at: String,
+    @SerializedName("status") val status: Status,
 )
 
 data class MobilDetail(
@@ -56,6 +121,10 @@ data class ResponseTambahPesanan(
 
 data class ResponsePesanans(
     @SerializedName("pesanans") val pesanans: List<Pesanans>
+)
+
+data class ResponseNotifications(
+    @SerializedName("notifikasi") val notifikasi: List<Notification>
 )
 
 data class Pesanan(

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FormPesananActivity">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         android:theme="@style/Theme.CloudRent.AppBarOverlay"
-        app:elevation="0dp">
+        app:elevation="0dp"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.appbar.MaterialToolbar
+            app:titleTextAppearance="@style/ToolbarTitleStyle"
             android:id="@+id/toolbar_form_pesanan"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -24,24 +26,24 @@
             app:titleTextColor="@color/white"
             android:theme="@style/Theme.CloudRent.AppBarOverlay"
             app:popupTheme="@color/birtud"
-            app:layout_scrollFlags="scroll|enterAlways"/>
+            app:layout_scrollFlags="scroll|enterAlways" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:layout_below="@+id/appBarLayout"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:background="@color/birtud"/>
-
+            android:layout_height="220dp"
+            android:layout_weight="1"
+            android:background="@color/birtud" />
 
         <LinearLayout
             android:id="@+id/line_pesan"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -55,14 +57,14 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="@color/birtud"
                     android:fontFamily="sans-serif-black"
                     android:text="1"
                     android:layout_gravity="center"
-                    android:textSize="20dp"
-                    android:layout_height="wrap_content" />
+                    android:textSize="20sp" />
             </FrameLayout>
 
             <TextView
@@ -73,20 +75,20 @@
                 android:text="Pesan"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textAlignment="center"/>
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_below="@+id/line_pesan"
             android:id="@+id/card_pesanan"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:ignore="UnknownId">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:elevation="8dp"
                 app:cardCornerRadius="16dp">
@@ -94,7 +96,7 @@
                 <LinearLayout
                     android:padding="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -108,7 +110,8 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/baseline_directions_car_24"/>
+                            android:background="@drawable/baseline_directions_car_24" />
+
                         <TextView
                             android:id="@+id/pesan_tgl_mulai"
                             android:layout_marginStart="5dp"
@@ -118,7 +121,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="Jum, 30 Juni 2023"/>
+                            android:text="Jum, 30 Juni 2023" />
+
                         <TextView
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="3dp"
@@ -127,7 +131,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="-"/>
+                            android:text="-" />
+
                         <TextView
                             android:id="@+id/pesan_tgl_selesai"
                             android:layout_marginStart="5dp"
@@ -137,19 +142,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
-                            android:text="Jum, 30 Juni 2023"/>
+                            android:text="Jum, 30 Juni 2023" />
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/nama_mobil"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:fontFamily="sans-serif-black"
                         android:textColor="@color/birtud"
                         android:layout_marginTop="5dp"
                         android:layout_marginStart="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Avanza"/>
+                        android:text="Avanza" />
 
                     <LinearLayout
                         android:layout_marginTop="5dp"
@@ -162,10 +167,9 @@
                         <TextView
                             android:fontFamily="sans-serif-medium"
                             android:textColor="@color/birtud_trans"
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Durasi Rental : "/>
+                            android:text="Durasi Rental : " />
 
                         <TextView
                             android:id="@+id/total_hari"
@@ -173,7 +177,7 @@
                             android:textColor="@color/birtud_trans"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1 hari"/>
+                            android:text="1 hari" />
 
                         <TextView
                             android:layout_marginStart="10dp"
@@ -181,7 +185,7 @@
                             android:textColor="@color/birtud_trans"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jemput/Antar : "/>
+                            android:text="Jemput/Antar : " />
 
                         <TextView
                             android:id="@+id/jam"
@@ -189,7 +193,7 @@
                             android:textColor="@color/birtud_trans"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="14:00"/>
+                            android:text="14:00" />
                     </LinearLayout>
 
                     <ImageView
@@ -198,6 +202,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/dash_line" />
+
                     <LinearLayout
                         android:gravity="center"
                         android:layout_marginTop="10dp"
@@ -210,17 +215,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Total : "
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:fontFamily="sans-serif-black"
-                            android:textColor="@color/birtud"/>
+                            android:textColor="@color/birtud" />
+
                         <TextView
                             android:id="@+id/harga_total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="IDR 1.500.000"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:fontFamily="sans-serif-black"
-                            android:textColor="@color/birtud"/>
+                            android:textColor="@color/birtud" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -231,15 +237,62 @@
             android:layout_below="@+id/card_pesanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_marginStart="25dp"
-                android:fontFamily="sans-serif-black"
-                android:textSize="16dp"
-                android:textColor="@color/birtud"
+            <LinearLayout
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Data Diri Pemesan"/>
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="0.5"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="16sp"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/birtud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data Diri Pemesan" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:gravity="end"
+                    android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnUserAddAsPemesan"
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="20dp"
+                        android:elevation="8dp"
+                        app:cardBackgroundColor="@color/birtud"
+                        android:foreground="@drawable/card_ripple_effect"
+                        android:layout_width="wrap_content"
+                        android:clickable="true"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:fontFamily="sans-serif-medium"
+                                android:textSize="11sp"
+                                android:text="Data Diri User"/>
+                            <ImageView
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/baseline_person_add_alt_1_24"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:paddingStart="10dp"
@@ -253,105 +306,149 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_marginTop="10dp"
-                            android:layout_marginStart="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Nama Lengkap"
-                            android:textSize="14sp"
-                            android:textColor="@color/birtud_trans"/>
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:textColorHint="@color/birtud_trans"
-                            android:textSize="16dp"
-                            android:textColor="@color/birtud"
                             android:fontFamily="sans-serif-medium"
-                            android:hint="Suroso Doso"
-                            android:paddingLeft="10dp"
-                            android:layout_margin="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:id="@+id/nama_pemesan"
-                            android:inputType="textPersonName"
-                            android:background="@drawable/roundtop"
-                            android:focusable="true"
-                            android:layout_marginBottom="10dp"
-                            android:focusableInTouchMode="true"/>
-                        <TextView
-                            android:layout_marginStart="20dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="No. Handphone"
-                            android:textSize="14sp"
-                            android:textColor="@color/birtud_trans"/>
-                        <LinearLayout
-                            android:layout_margin="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/roundedit"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"
-                                android:text="+62"/>
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/birtud_trans"
+                            android:text="Nama Lengkap"/>
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:textColorHint="@color/birtud_trans"
-                                android:textSize="16dp"
-                                android:textColor="@color/birtud"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:paddingLeft="10dp"
-                                android:hint="087717932289"
+                                android:textSize="16sp"
                                 android:fontFamily="sans-serif-medium"
-                                android:id="@+id/no_hp"
-                                android:inputType="phone"
-                                android:background="@drawable/rounded_gray_right"
+                                android:hint="Sesuai KTP"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:id="@+id/nama_pemesan"
+                                android:inputType="textPersonName"
+                                android:background="@drawable/form_search"
                                 android:focusable="true"
-                                android:focusableInTouchMode="true"/>
-                        </LinearLayout>
+                                android:focusableInTouchMode="true" />
                         <TextView
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="10dp"
+                            android:id="@+id/textErrorName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Email"
-                            android:textSize="14sp"
-                            android:textColor="@color/birtud_trans"/>
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:textColorHint="@color/birtud_trans"
-                            android:layout_margin="10dp"
-                            android:textSize="16dp"
+                            android:textColor="@color/red"
+                            android:visibility="gone"
+                            android:textSize="12sp"
+                            android:gravity="left"/>
+
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/birtud"
-                            android:hint="email@example.com"
+                            android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
-                            android:id="@+id/email"
-                            android:inputType="textEmailAddress"
-                            android:background="@drawable/roundbottom"
-                            android:focusable="true"
-                            android:layout_marginBottom="10dp"
-                            android:focusableInTouchMode="true"/>
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/birtud_trans"
+                            android:text="Nomor HP"/>
+                        <LinearLayout
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:padding="5dp"
+                                android:layout_width="57dp"
+                                android:layout_marginEnd="5dp"
+                                android:background="@drawable/round_botom_right"
+                                android:gravity="bottom"
+                                android:layout_height="40dp">
+                                <TextView
+                                    android:gravity="center"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/birtud"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:text="+62" />
+                            </LinearLayout>
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:textColorHint="@color/birtud_trans"
+                                    android:textSize="16sp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:paddingLeft="10dp"
+                                    android:hint="08xxxxxxxxxx"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:id="@+id/no_hp"
+                                    android:inputType="phone"
+                                    android:background="@drawable/form_search"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_marginStart="10dp"
+                            android:id="@+id/textErrorNomor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/red"
+                            android:visibility="gone"
+                            android:textSize="12sp"
+                            android:gravity="left"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/birtud_trans"
+                            android:text="Email"/>
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:textColorHint="@color/birtud_trans"
+                                android:textSize="16sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginStart="10dp"
+                                android:hint="nama@email.com"
+                                android:fontFamily="sans-serif-medium"
+                                android:id="@+id/email"
+                                android:inputType="textEmailAddress"
+                                android:background="@drawable/form_search"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true" />
+                        <TextView
+                            android:layout_marginStart="10dp"
+                            android:id="@+id/textErrorEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/red"
+                            android:textSize="12sp"
+                            android:visibility="gone"
+                            android:gravity="left"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="25dp"
                             android:layout_marginStart="10dp">
 
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:background="@drawable/warning_sign_svgrepo_com"/>
+                                android:background="@drawable/warning_sign_svgrepo_com" />
 
                             <TextView
                                 android:id="@+id/warning1"
@@ -365,7 +462,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:text="Tidak Bisa Reschedule"
                                 android:textColor="@color/birtud_trans"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -378,7 +475,7 @@
                                 android:layout_gravity="center"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:background="@drawable/baseline_check_circle_24"/>
+                                android:background="@drawable/baseline_check_circle_24" />
 
                             <TextView
                                 android:id="@+id/brand"
@@ -392,7 +489,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:text="Pastikan Data Diri Benar"
                                 android:textColor="@color/birtud_trans"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -400,14 +497,15 @@
             </LinearLayout>
 
             <Button
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:id="@+id/btnPesan"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/ripple_effect"
                 android:elevation="10dp"
+                android:textAllCaps="false"
                 android:text="Pesan"
                 android:textColor="#ffffff"
                 tools:ignore="HardcodedText,MissingConstraints,VisualLintButtonSize"
@@ -417,6 +515,7 @@
         </LinearLayout>
 
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/progressBar_detail"
         android:visibility="gone"
@@ -426,9 +525,9 @@
         android:background="@color/white">
 
         <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center" />
     </LinearLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
