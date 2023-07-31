@@ -53,7 +53,7 @@ class Pesanan_List_Activity : AppCompatActivity() {
 
 //        progressBar = findViewById(R.id.progressBar)
         errorText = findViewById(R.id.error_text)
-        swipe = findViewById(R.id.swipe_pesanan)
+        swipe = binding.swipePesanan
         recyclerView = findViewById(R.id.recyclerView_pesanan)
         shimmer_layout = findViewById(R.id.shimmer_layout)
         shimmer_menu_layout = findViewById(R.id.shimmer_layout_menu)

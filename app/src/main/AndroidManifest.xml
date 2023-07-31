@@ -45,7 +45,6 @@
         <activity
             android:name=".SearchActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.SearchActivity"
             android:parentActivityName=".HomeActivity"
             android:screenOrientation="portrait" />
         <activity
