@@ -244,7 +244,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setTglS(hari: Int, tgl: String){
-        val inputDateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
+        val inputDateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
         val inputDate = inputDateFormat.parse(tgl)
         val calendar = Calendar.getInstance()
         calendar.time = inputDate
