@@ -29,7 +29,6 @@
                 android:background="@color/birtud"
                 app:title="Notifikasi"
                 android:textAlignment="center"
-                app:titleCentered="true"
                 app:titleTextColor="@color/white"
                 android:theme="@style/Theme.CloudRent.AppBarOverlay"
                 app:popupTheme="@color/birtud"
@@ -40,9 +39,9 @@
             android:id="@+id/rvNotifications"
             app:layout_constraintBottom_toBottomOf="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:paddingTop="10dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingTop="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_notifications"/>
     </LinearLayout>

@@ -16,6 +16,11 @@
         <item name="android:paddingStart">20dp</item>
     </style>
 
+    <style name="AppTheme.SearchActivity" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize the navigation bar color here -->
+        <item name="android:navigationBarColor">@android:color/white</item>
+    </style>
+
     <style name="Widget.MaterialComponents.Button.IconOnly">
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".ProfileFragment">
+    tools:context=".fragment.ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -173,45 +173,6 @@
                                             android:textColor="@color/birtud"/>
                                     </LinearLayout>
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:orientation="vertical"
-                                        android:layout_height="wrap_content">
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="No.Telepon"
-                                            android:textSize="12sp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginStart="5dp"
-                                            android:layout_marginBottom="5dp"
-                                            android:textColor="@color/birtud_trans"
-                                            android:fontFamily="sans-serif-medium"/>
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/roundedit">
-                                            <TextView
-                                                android:layout_marginStart="10dp"
-                                                android:layout_marginEnd="10dp"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textSize="16sp"
-                                                android:text="+62"/>
-
-                                            <com.google.android.material.textfield.TextInputEditText
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="89xxxxxxxx"
-                                                android:textSize="16sp"
-                                                android:padding="15dp"
-                                                android:focusable="false"
-                                                android:fontFamily="sans-serif-medium"
-                                                android:background="@drawable/rounded_gray_right"
-                                                android:textColor="@color/birtud"/>
-                                        </LinearLayout>
-                                    </LinearLayout>
-
                                 </LinearLayout>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -225,6 +186,24 @@
                     android:background="@drawable/ripple_outline_button_tt"
                     android:text="Keluar"
                     android:textColor="@color/birtud"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        tools:ignore="MissingConstraints">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:text="Versi Aplikasi 1.0"
+                            android:textColor="@color/birtud_trans"
+                            android:textSize="11sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
     </LinearLayout>

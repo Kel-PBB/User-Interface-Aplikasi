@@ -1,4 +1,4 @@
-package com.example.cloudrent
+package com.example.cloudrent.variabel
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

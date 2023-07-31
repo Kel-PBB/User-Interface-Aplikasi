@@ -1,22 +1,16 @@
 package com.example.cloudrent
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,20 +18,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.cloudrent.adapter.SearchAdapter
 import com.example.cloudrent.adapter.SkeletonAdapter
 import com.example.cloudrent.databinding.ActivitySearchBinding
+import com.example.cloudrent.fragment.HomeFragment
 import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.response.Mobil
 import com.example.cloudrent.response.SearchResponse
-import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.google.android.material.card.MaterialCardView
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -121,6 +111,7 @@ class SearchActivity : AppCompatActivity(), HomeFragment.DataPassListener {
 //        skeletonview.showSkeleton()
     }
 
+
     override fun onDataPass(
         token: String,
         tanggal_mulai: String,
@@ -182,6 +173,7 @@ class SearchActivity : AppCompatActivity(), HomeFragment.DataPassListener {
                         simmer_layout.visibility = View.GONE
 
                     } else {
+//                        simmer_layout.visibility = View.GONE
                         val errorMessage = response.errorBody()?.string()
 //                        skeletonview.showOriginal()
                         Toast.makeText(this@SearchActivity, errorMessage, Toast.LENGTH_LONG).show()
@@ -192,6 +184,7 @@ class SearchActivity : AppCompatActivity(), HomeFragment.DataPassListener {
 //                    progressBar.visibility = View.GONE
 //                    skeletonview.showOriginal()
                     errorText.visibility = View.VISIBLE
+                    simmer_layout.visibility = View.GONE
                     Log.e("SearchMobil", t.stackTraceToString())
                     Toast.makeText(this@SearchActivity, "An error occurred", Toast.LENGTH_SHORT)
                         .show()

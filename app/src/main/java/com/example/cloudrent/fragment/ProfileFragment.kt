@@ -1,4 +1,4 @@
-package com.example.cloudrent
+package com.example.cloudrent.fragment
 
 import android.content.Context
 import android.content.DialogInterface
@@ -13,18 +13,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat.finishAffinity
+import com.example.cloudrent.Login
+import com.example.cloudrent.R
 import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.response.ResponseLogout
-import com.example.cloudrent.response.ResponsePesanans
 import com.example.cloudrent.response.ResponseUserProfile
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.prefs.Preferences
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

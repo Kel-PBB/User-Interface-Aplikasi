@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher_round"
@@ -22,16 +22,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyArC4qkvEVF6zosAiwDNH0XBCZ1zX6fd-w" />
         <activity
-            android:name=".PesananJemputDetailActivity"
+            android:name=".pesananactivity.PesananJemputDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".UploadBuktiTransferActivity"
+            android:name=".pesananactivity.UploadBuktiTransferActivity"
             android:exported="false" />
         <activity
-            android:name=".PesananDetailActivity"
+            android:name=".pesananactivity.PesananDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Pesanan_List_Activity"
+            android:name=".pesananactivity.Pesanan_List_Activity"
             android:exported="false" />
         <activity
             android:name=".SuccessActivity"
@@ -45,12 +45,9 @@
         <activity
             android:name=".SearchActivity"
             android:exported="false"
+            android:theme="@style/AppTheme.SearchActivity"
             android:parentActivityName=".HomeActivity"
-            android:screenOrientation="portrait" /> <!-- <activity -->
-        <!-- android:name=".SeacrhActivity" -->
-        <!-- android:exported="false" -->
-        <!-- android:parentActivityName=".HomeActivity" -->
-        <!-- android:screenOrientation="portrait" /> -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
@@ -71,11 +68,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.CloudRent.NoActionBar" />
         <activity
-            android:name=".LetsGo"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.CloudRent.NoActionBar" />
-        <activity
             android:name=".HomeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -87,7 +79,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

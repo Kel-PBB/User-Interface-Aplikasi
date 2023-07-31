@@ -1,4 +1,4 @@
-package com.example.cloudrent
+package com.example.cloudrent.pesananactivity
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.cloudrent.R
 import com.example.cloudrent.adapter.MenuItemPesananAdapter
 import com.example.cloudrent.adapter.PesananListAdapter
 import com.example.cloudrent.adapter.SkeletonAdapter
@@ -164,9 +165,13 @@ class Pesanan_List_Activity : AppCompatActivity() {
                                     val clickedPosition = DataMenuJudul.indexOf(clickMenu)
                                     adaptermenu.updateSelectedMenu(clickedPosition)
                                     val backgoundColor = if(clickMenu.isSelected){
-                                        ContextCompat.getColor(this@Pesanan_List_Activity, R.color.white)
+                                        ContextCompat.getColor(this@Pesanan_List_Activity,
+                                            R.color.white
+                                        )
                                     }else{
-                                        ContextCompat.getColor(this@Pesanan_List_Activity, R.color.birtud_trans)
+                                        ContextCompat.getColor(this@Pesanan_List_Activity,
+                                            R.color.birtud_trans
+                                        )
                                     }
                                     val clickedViewHolder = binding.recyclerViewPesanan.findViewHolderForAdapterPosition(clickedPosition) as? MenuItemPesananAdapter.MyViewHolder
                                     clickedViewHolder?.card_menu?.setCardBackgroundColor(backgoundColor)

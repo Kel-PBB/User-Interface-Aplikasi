@@ -1,4 +1,4 @@
-package com.example.cloudrent
+package com.example.cloudrent.pesananactivity
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -20,17 +20,12 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.cloudrent.R
 import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.response.Invoice
 import com.example.cloudrent.response.Pesanans
 import com.example.cloudrent.response.ResponsePesananShow
 import com.example.cloudrent.response.ResponseUploadBukti
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.appbar.MaterialToolbar
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody

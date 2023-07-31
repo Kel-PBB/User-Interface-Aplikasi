@@ -1,6 +1,5 @@
 package com.example.cloudrent
 
-import ShimmerHelper
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
@@ -54,7 +53,6 @@ import java.util.*
 class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var googleMap: GoogleMap
-    private  lateinit var progressBar: LinearLayout
     private lateinit var harga: String
     private lateinit var totalHari: String
     private lateinit var totalHarga: TextView
@@ -65,16 +63,7 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var brand: TextView
     private lateinit var toolbar: Toolbar
     private lateinit var gambar: ImageView
-    private lateinit var btnPesan: Button
     private lateinit var btnRincian: ImageView
-    private lateinit var shimerImageMobil: ShimmerFrameLayout
-//    private lateinit var content: LinearLayout
-    private lateinit var content: ScrollView
-    private lateinit var cons: LinearLayout
-    private lateinit var shimmerHelpers: ShimmerHelper
-    private lateinit var shimmerBackground: LinearLayout
-
-    private lateinit var recyclerView: RecyclerView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,21 +73,15 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
-//        shimerImageMobil = findViewById(R.id.shimmer_layout_mobil_image)
-//        val skeleton = LayoutInflater.from(this).inflate(R.layout.skeleton_detail_mobil, null)
-//        shimerImageMobil.addView(skeleton)
-//        shimerImageMobil.startShimmer()
-//        progressBar = findViewById(R.id.progressBar_detail)
-//        harga = findViewById(R.id.harga_hari)
         manual = findViewById(R.id.transmisi)
         seat = findViewById(R.id.seat)
         mesin = findViewById(R.id.mesin)
         brand = findViewById(R.id.brand)
-//        totalHari = findViewById(R.id.total_hari)
+
         totalHarga = findViewById(R.id.harga_total_a)
         toolbar = findViewById(R.id.toolbar_detail)
         gambar = findViewById(R.id.mobil_gam)
-        // Find all ShimmerFrameLayout views in the layout and apply shimmer animation
+
         val rootView = findViewById<ViewGroup>(android.R.id.content)
         applyShimmerToAllShimmerFrames(rootView)
         btnRincian = findViewById(R.id.show_rincian)
@@ -151,7 +134,6 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun detailMobil(token: String, kode_mobil: String) {
-//        progressBar.visibility = View.VISIBLE
         val apiService = ApiClient.create(token)
         apiService.detailMobil(kode_mobil).enqueue(object : Callback<MobilDetail> {
                 override fun onResponse(call: Call<MobilDetail>, response: Response<MobilDetail>) {
@@ -164,16 +146,6 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
                         val rootView = findViewById<ViewGroup>(android.R.id.content)
                         stopShimmerForAllShimmerFrames(rootView)
                         updateUI(mobil, search, total, days)
-//                        Handler().postDelayed({
-//                            shimerImageMobil.stopShimmer()
-//                            content.visibility = View.VISIBLE
-//                            cons.visibility = View.VISIBLE
-//                            shimerImageMobil.visibility = View.GONE
-//                        }, 2000)
-//                        shimerImageMobil.hideShimmer()
-
-//                        progressBar.visibility = View.GONE
-                        // Process the successful response
                     } else {
                         val errorMessage = response.errorBody()?.string()
                         Toast.makeText(this@DetailMobilActivity, "An error occurred", Toast.LENGTH_SHORT).show()
@@ -181,7 +153,6 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
 
                 override fun onFailure(call: Call<MobilDetail>, t: Throwable) {
-//                    progressBar.visibility = View.GONE
                     Log.e("SearchMobil", t.stackTraceToString())
                     Toast.makeText(this@DetailMobilActivity, "An error occurred", Toast.LENGTH_SHORT)
                         .show()
@@ -232,9 +203,7 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
             if (childView is ShimmerFrameLayout) {
                 childView.stopShimmer()
                 childView.hideShimmer()
-//                childView.visibility = View.GONE
                 goneChild(childView)
-                // Find and hide the <include> view if found inside the ShimmerFrameLayout
             } else if (childView is ViewGroup) {
                 stopShimmerForViewGroup(childView)
             }
@@ -306,9 +275,9 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
 
         googleMap.uiSettings.isZoomControlsEnabled = true
 
-        val sydney = LatLng(-33.8852, 151.211)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12f))
+        val kantor = LatLng(-7.428603138510555, 109.2768924727306)
+        googleMap.addMarker(MarkerOptions().position(kantor).title("Marker in Kantor"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kantor, 12f))
     }
 
     override fun onResume() {
@@ -330,13 +299,4 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onLowMemory()
         mapView.onLowMemory()
     }
-//    private fun ShowSpekMahasiswa() {
-//        val adapter = SpesifikasiAdapter(card_spek = DatamSpek){
-//        }
-//        val recyclerView =
-//            findViewById<RecyclerView>(R.id.rv_spek)
-//        recyclerView.layoutManager = GridLayoutManager (this, 2)
-//        recyclerView.adapter = SpesifikasiAdapter (DatamSpek) {
-//        }
-//    }
 }

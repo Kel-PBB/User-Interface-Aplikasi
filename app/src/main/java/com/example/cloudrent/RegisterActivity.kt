@@ -1,7 +1,6 @@
 package com.example.cloudrent
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -10,14 +9,11 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.cloudrent.database.DBHelper
 import com.example.cloudrent.network.ApiClient
-import com.example.cloudrent.network.ApiService
 import com.example.cloudrent.response.LoginRequest
 import com.example.cloudrent.response.ResponseUserLogin
 import com.example.cloudrent.response.ResponseUserRegister

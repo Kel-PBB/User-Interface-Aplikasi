@@ -3,10 +3,15 @@
     <style name="Theme.CloudRent" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/birtud</item>
-        <item name="colorPrimaryDark">@color/birmud</item>
+        <item name="colorPrimaryDark">@color/birtud</item>
         <item name="colorAccent">@color/birtud</item>
         <!--        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>-->
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.SearchActivity" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize the navigation bar color here -->
+        <item name="android:navigationBarColor">@android:color/white</item>
     </style>
 
     <style name="EditTextLogin">

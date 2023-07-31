@@ -6,7 +6,7 @@
         android:icon="@drawable/noun_home_2111244"/>
     <item
         android:title="Call Center"
-        android:id="@+id/navigation_loc"
+        android:id="@+id/navigation_callcenter"
         android:icon="@drawable/noun_headphone_1155235" />
     <item
         android:title="@string/title_notifications"

@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
                             android:textColor="@color/white"
-                            android:text="8"/>
+                            android:text="0"/>
                     </LinearLayout>
 
                 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.cloudrent
+package com.example.cloudrent.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,17 +11,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cloudrent.R
 import com.example.cloudrent.adapter.NotifikasiAdapter
-import com.example.cloudrent.adapter.PesananListAdapter
 import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.response.Notification
-import com.example.cloudrent.response.NotificationData
-import com.example.cloudrent.response.Pesanans
 import com.example.cloudrent.response.ResponseNotifications
-import com.example.cloudrent.response.ResponseUserProfile
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

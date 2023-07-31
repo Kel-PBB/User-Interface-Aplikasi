@@ -48,8 +48,13 @@ data class UserProfile(
 )
 
 data class ResponseBeranda(
+    @SerializedName("message") val message: String,
     @SerializedName("jumlah_pesanan") val jumlah_pesanan: Int,
     @SerializedName("jumlah_notifications") val jumlah_notifications: Int,
+)
+
+data class Message(
+    @SerializedName("message") val message: String
 )
 
 data class ResponseUserLogin(

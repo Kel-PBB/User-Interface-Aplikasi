@@ -24,7 +24,6 @@
             android:background="@color/birtud"
             android:theme="@style/Theme.CloudRent.AppBarOverlay"
             app:popupTheme="@color/birtud"
-            app:title="Nama Mobil"
             app:titleCentered="false"
             app:titleTextAppearance="@style/ToolbarTitleStyle"
             app:titleTextColor="@color/white" />

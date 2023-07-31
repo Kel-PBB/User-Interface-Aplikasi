@@ -1,8 +1,7 @@
-package com.example.cloudrent
+package com.example.cloudrent.fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,8 +18,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.format.DateUtils.isToday
-import android.view.Window
 import android.view.WindowManager
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,8 +33,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.cloudrent.Login
+import com.example.cloudrent.pesananactivity.Pesanan_List_Activity
+import com.example.cloudrent.R
 import java.text.ParseException
 
 // TODO: Rename parameter arguments, choose names that match
@@ -283,11 +282,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun hitungTanggal()
-    {
-
-    }
-
     private fun sendDatatoActivity(token: String, tanggal_mulai: String, tanggal_selesai: String, waktu: String){
         dataPassListener.onDataPass(token, tanggal_mulai, tanggal_selesai, waktu)
     }
@@ -324,8 +318,6 @@ class HomeFragment : Fragment() {
             }
             timePickerDialog.updateTime(maxHour, maxMinute)
         }
-
-
         timePickerDialog.show()
     }
 
@@ -363,6 +355,7 @@ class HomeFragment : Fragment() {
                     val responseData = response.body()?.jumlah_pesanan
                     updateUi(responseData)
                 }else{
+//                    val errorMessage = response.body()?.message
                     Toast.makeText(requireContext(), "Gagal Memuat", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -440,20 +433,6 @@ class HomeFragment : Fragment() {
         return outputFormat.format(date)
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        val recyclerView: RecyclerView = view.findViewById(R.id.rv_card_mobil)
-//
-//        val adapter = CardCardHomeAdapter(Datamahasiswa){}
-//        recyclerView.adapter = adapter
-//
-//        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-//        recyclerView.layoutManager = layoutManager
-//
-//        val marginInDp = 6 // Margin yang diinginkan dalam satuan dp
-//        val itemDecoration = SpaceItemDecoration(requireContext(), marginInDp)
-//        recyclerView.addItemDecoration(itemDecoration)
-//    }
 
     companion object {
         /**

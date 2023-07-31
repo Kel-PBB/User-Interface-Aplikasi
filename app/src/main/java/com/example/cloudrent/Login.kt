@@ -6,15 +6,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cloudrent.database.DBHelper
-import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.network.ApiClient.apiService
 import com.example.cloudrent.response.LoginRequest
 import com.example.cloudrent.response.ResponseUserLogin

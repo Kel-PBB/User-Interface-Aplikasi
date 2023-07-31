@@ -9,10 +9,12 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cloudrent.databinding.ActivityHomeBinding
-import com.example.cloudrent.response.Mobil
+import com.example.cloudrent.fragment.HomeFragment
+import com.example.cloudrent.fragment.CallCenterFragment
+import com.example.cloudrent.fragment.NotificcationsFragment
+import com.example.cloudrent.fragment.ProfileFragment
 
 class HomeActivity : AppCompatActivity(), HomeFragment.DataPassListener {
     private lateinit var binding: ActivityHomeBinding
@@ -37,7 +39,7 @@ class HomeActivity : AppCompatActivity(), HomeFragment.DataPassListener {
         binding.bottonnav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_home -> replaceFragment(HomeFragment())
-                R.id.navigation_loc -> replaceFragment(LocationFragment())
+                R.id.navigation_callcenter -> replaceFragment(CallCenterFragment())
                 R.id.navigation_notifications -> replaceFragment(NotificcationsFragment())
                 R.id.navigation_profile -> replaceFragment(ProfileFragment())
                 else -> {

@@ -1,17 +1,15 @@
-package com.example.cloudrent
+package com.example.cloudrent.pesananactivity
 
 import android.content.Context
-import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.cardview.widget.CardView
+import com.example.cloudrent.R
 import com.example.cloudrent.network.ApiClient
 import com.example.cloudrent.response.Invoice
 import com.example.cloudrent.response.Pesanans
@@ -99,9 +97,9 @@ class PesananJemputDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
         googleMap.uiSettings.isZoomControlsEnabled = true
 
-        val sydney = LatLng(-33.8852, 151.211)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12f))
+        val kantor = LatLng(-7.428603138510555, 109.2768924727306)
+        googleMap.addMarker(MarkerOptions().position(kantor).title("Marker in Kantor"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kantor, 12f))
     }
 
     override fun onResume() {

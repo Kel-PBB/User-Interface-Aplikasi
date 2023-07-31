@@ -12,8 +12,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cloudrent.PesananDetailActivity
-import com.example.cloudrent.PesananJemputDetailActivity
+import com.example.cloudrent.pesananactivity.PesananDetailActivity
+import com.example.cloudrent.pesananactivity.PesananJemputDetailActivity
 import com.example.cloudrent.R
 import com.example.cloudrent.response.Pesanans
 import java.text.NumberFormat
