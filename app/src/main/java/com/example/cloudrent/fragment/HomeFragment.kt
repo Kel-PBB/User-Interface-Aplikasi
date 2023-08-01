@@ -244,7 +244,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setTglS(hari: Int, tgl: String){
-        val inputDateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
+        val inputDateFormat = SimpleDateFormat("EEE, dd MMMM yyyy", Locale("id", "ID"))
         val inputDate = inputDateFormat.parse(tgl)
         val calendar = Calendar.getInstance()
         calendar.time = inputDate
@@ -391,7 +391,7 @@ class HomeFragment : Fragment() {
                     if(selectedDate.before(currentDateTime)){
                         Toast.makeText(requireContext(), "Tanggal Mulai Tidak Valid", Toast.LENGTH_SHORT).show()
                     } else{
-                        val dateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
+                        val dateFormat = SimpleDateFormat("EEE, dd MMMM yyyy", Locale("id", "ID"))
                         val formattedDate = dateFormat.format(selectedDate.time)
                         eDateMBox.setText(formattedDate)
                     }

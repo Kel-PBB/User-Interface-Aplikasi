@@ -12,6 +12,7 @@
     android:foreground="@drawable/card_ripple_effect"
     android:background="@drawable/roundeditfocus">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/img_item_photo"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
                 android:src="@drawable/mobilbiru"
                 android:scaleType="fitXY">
             </ImageView>
@@ -42,22 +43,12 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/nama_mobil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/img_item_photo"
-                        android:text="Brio"
-                        android:textColor="@color/birtud"
-                        android:textSize="15sp"
-                        android:layout_marginBottom="5dp"
-                        android:textStyle="bold"></TextView>
+
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="10dp">
 
                         <TextView
                             android:id="@+id/brand"
@@ -67,20 +58,33 @@
                             android:layout_alignParentTop="true"
                             android:layout_toEndOf="@+id/img_item_photo"
                             android:text="Toyota"
-                            android:textColor="@color/birtud_trans"
-                            android:textSize="12dp"
-                            android:layout_marginEnd="15dp"/>
+                            android:textColor="@color/birtud"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="5dp"/>
+                        <TextView
+                            android:layout_marginEnd="5dp"
+                            android:id="@+id/nama_mobil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@+id/img_item_photo"
+                            android:text="Brio"
+                            android:textColor="@color/birtud"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="5dp"
                             android:gravity="center">
 
                             <ImageView
@@ -106,7 +110,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_marginEnd="15dp">
+                            android:layout_marginBottom="5dp">
 
                             <ImageView
                                 android:layout_width="15dp"
@@ -136,8 +140,8 @@
                             <ImageView
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
-                                android:src="@drawable/engine_svgrepo_com"
-                                android:layout_marginEnd="5dp"/>
+                                android:layout_marginEnd="5dp"
+                                android:src="@drawable/engine_svgrepo_com" />
 
                             <TextView
                                 android:id="@+id/mesin"
