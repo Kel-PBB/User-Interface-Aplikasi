@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@color/birtud">
+    android:layout_height="60dp">
 
 
     <LinearLayout

@@ -44,11 +44,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_weight="1"
-                    android:background="@color/birtud" />
+                    <FrameLayout
+                        android:background="@color/birtud"
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp">
+                        <ImageView
+                            android:contentDescription="adas"
+                            android:scaleType="fitStart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/gradient_1"
+                            android:alpha="0.7" />
+                    </FrameLayout>
 
                 <LinearLayout
                     android:id="@+id/line_pesan"

@@ -76,7 +76,6 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
         manual = findViewById(R.id.transmisi)
         seat = findViewById(R.id.seat)
         mesin = findViewById(R.id.mesin)
-        brand = findViewById(R.id.brand)
 
         totalHarga = findViewById(R.id.harga_total_a)
         toolbar = findViewById(R.id.toolbar_detail)
@@ -249,7 +248,8 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun updateUI(mobil: MobilClass?, search: Search?, total: Int?, days: Int?){
-        toolbar.setTitle(mobil?.nama)
+        val mobil_nama = mobil?.brand + " " + mobil?.nama
+        toolbar.setTitle(mobil_nama)
         harga = mobil?.harga.toString()
         val hargaTot = formatNumber(total)
         val gambar_rl = "https://cloudrental.my.id/storage/" + mobil?.gambar
@@ -259,7 +259,6 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
         totalHarga.setText("IDR " + hargaTot)
         totalHargaR = hargaTot
         totalHari = days.toString()
-        brand.setText(mobil?.brand)
         manual.setText(mobil?.transmisi)
         seat.setText(mobil?.seat + " seat")
         mesin.setText(mobil?.mesin + " CC")
