@@ -8,6 +8,11 @@ android {
     namespace 'com.example.cloudrent'
     compileSdk 33
 
+    applicationVariants.all { variant ->
+        variant.outputs.all{
+            outputFileName = "CloudRent.apk"
+        }
+    }
     defaultConfig {
         applicationId "com.example.cloudrent"
         minSdk 24
