@@ -256,7 +256,7 @@ class DetailMobilActivity : AppCompatActivity(), OnMapReadyCallback {
         Picasso.get()
             .load(gambar_rl)
             .into(gambar)
-        totalHarga.setText("IDR " + hargaTot)
+        totalHarga.setText(hargaTot)
         totalHargaR = hargaTot
         totalHari = days.toString()
         manual.setText(mobil?.transmisi)

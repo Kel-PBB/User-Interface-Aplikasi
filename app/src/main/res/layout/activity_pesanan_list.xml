@@ -12,24 +12,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:background="@color/birtud"
+            android:layout_width="match_parent"
+            android:layout_height="130dp">
+            <ImageView
+                android:contentDescription="adas"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.7"
+                android:src="@drawable/gradient_1" />
+        </FrameLayout>
+
         <com.google.android.material.appbar.MaterialToolbar
             app:titleTextAppearance="@style/ToolbarTitleStyle"
             android:id="@+id/toolbar_pesanan"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/birtud"
             app:title="Pesanan"
             android:textAlignment="center"
             app:titleTextColor="@color/white"
             android:theme="@style/Theme.CloudRent.AppBarOverlay"
-            app:popupTheme="@color/birtud"
             app:layout_scrollFlags="scroll|enterAlways"/>
         <LinearLayout
             android:id="@+id/menu"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:layout_below="@+id/toolbar_pesanan"
-            android:background="@color/birtud"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.facebook.shimmer.ShimmerFrameLayout
@@ -84,12 +94,37 @@
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginTop="10dp"
                         android:visibility="gone"
                         android:id="@+id/recyclerView_pesanan"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/card_pesanan" />
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/error_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:src="@drawable/error404">
+                        </ImageView>
+
+                        <TextView
+                            android:gravity="center"
+                            android:textColor="@color/birtud"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Periksa Jaringan Internet Anda"/>
+                    </LinearLayout>
                 </RelativeLayout>
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </RelativeLayout>
@@ -100,44 +135,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/error_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:background="@color/white"
-                android:visibility="gone"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_gravity="center"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/error404">
-                </ImageView>
 
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/birtud"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif-black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Periksa Jaringan Internet Anda"/>
-            </LinearLayout>
-<!--            <LinearLayout-->
-<!--                android:id="@+id/progressBar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:gravity="center"-->
-<!--                android:background="@color/white"-->
-<!--                android:visibility="gone"-->
-<!--                android:orientation="vertical">-->
-
-<!--                <ProgressBar-->
-<!--                    android:layout_width="35dp"-->
-<!--                    android:layout_height="35dp"-->
-<!--                    android:layout_gravity="center" />-->
-<!--            </LinearLayout>-->
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

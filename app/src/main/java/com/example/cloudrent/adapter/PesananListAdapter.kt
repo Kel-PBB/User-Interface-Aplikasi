@@ -55,8 +55,9 @@ class PesananListAdapter (private  val context: Context, private val dataList: A
 
         val days = countDay(dataList[position].tanggal_rental_mulai, dataList[position].tanggal_rental_selesai)
         val tglP = parseDateBuat(dataList[position].created_at)
+        val nama_mobil = dataList[position].mobil.brand + " " + dataList[position].mobil.nama
 
-        holder.tvNama.text = dataList[position].mobil.nama
+        holder.tvNama.text = nama_mobil
         holder.tvStatus.text = dataList[position].status.name
         holder.tvTglM.text = tgl_m
         holder.tvTglS.text = tgl_s
@@ -154,7 +155,7 @@ class PesananListAdapter (private  val context: Context, private val dataList: A
     private fun countDay(tglM: String?, tglS: String?): String {
         val tgl_M = LocalDate.parse(tglM)
         val tgl_S = LocalDate.parse(tglS)
-        val days = ChronoUnit.DAYS.between(tgl_M, tgl_S)
+        val days = 1 + ChronoUnit.DAYS.between(tgl_M, tgl_S)
 
         return "$days"
     }

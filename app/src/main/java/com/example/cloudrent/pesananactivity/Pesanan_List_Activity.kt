@@ -145,7 +145,11 @@ class Pesanan_List_Activity : AppCompatActivity() {
     }
 
     private fun pesanList(token: String) {
-//        errorText.visibility = View.GONE
+        errorText.visibility = View.GONE
+        shimmer_menu_layout.visibility = View.VISIBLE
+        shimmer_layout.visibility = View.VISIBLE
+        shimmer_menu_layout.startShimmer()
+        shimmer_layout.startShimmer()
 //        progressBar.visibility = View.VISIBLE
         val apiService = ApiClient.create(token)
         apiService.pesananList().enqueue(object : retrofit2.Callback<ResponsePesanans> {
@@ -205,6 +209,9 @@ class Pesanan_List_Activity : AppCompatActivity() {
 
                 override fun onFailure(call: Call<ResponsePesanans>, t: Throwable) {
 //                    progressBar.visibility = View.GONE
+                    recyclerViewMenu.visibility = View.VISIBLE
+                    shimmer_menu_layout.visibility = View.GONE
+                    shimmer_layout.visibility = View.GONE
                     errorText.visibility = View.VISIBLE
                     Log.e("SearchMobil", t.stackTraceToString())
                     Toast.makeText(this@Pesanan_List_Activity, "An error occurred", Toast.LENGTH_SHORT)

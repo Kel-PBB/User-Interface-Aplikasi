@@ -154,12 +154,13 @@ class PesananJemputDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateUi(invoice: Invoice?, pesanan: Pesanans?)
     {
-        val tglMulai = parseDate(pesanan?.tanggal_rental_mulai.toString())
+        val tglMulai = parseDateM(pesanan?.tanggal_rental_mulai.toString())
         val tglSelesai = parseDate(pesanan?.tanggal_rental_selesai)
         val jamM = parseTimeString(pesanan?.waktu_pengambilan.toString())
         val tglPes = parseDateBuat(pesanan?.created_at.toString())
         val days = getHari(pesanan?.tanggal_rental_mulai.toString(), pesanan?.tanggal_rental_selesai.toString())
         val totP = formatNumber(invoice?.total?.toInt())
+        val nama_mobil = pesanan?.mobil?.brand + " " + pesanan?.mobil?.nama
         val status_invoice = invoice?.status?.id
 
         if (status_invoice?.equals(1)!!){
@@ -170,7 +171,7 @@ class PesananJemputDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
         tglM.setText(tglMulai)
         tglS.setText(tglSelesai)
-        namaMobil.setText(pesanan?.mobil?.nama)
+        namaMobil.setText(nama_mobil)
         tglPesan.setText(tglPes)
         jam.setText(jamM)
         totalH.setText(days)
@@ -200,6 +201,15 @@ class PesananJemputDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         return outputFormat.format(date)
     }
 
+    private  fun parseDateM(dateString: String?): String
+    {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale("id", "ID"))
+        val outputFormat = SimpleDateFormat("EEEE, dd MMMM", Locale.getDefault())
+
+        val date: Date = inputFormat.parse(dateString) ?: return ""
+        return outputFormat.format(date)
+    }
+
     fun parseTimeStringTo(timeString: String): String {
         val inputFormat = SimpleDateFormat("HH:mm:ss:SSS", Locale.getDefault())
         val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -214,7 +224,7 @@ class PesananJemputDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     fun getHari(tglM: String, tglS: String): String {
         val tglMul = LocalDate.parse(tglM)
         val tglSel = LocalDate.parse(tglS)
-        val day = ChronoUnit.DAYS.between(tglMul, tglSel)
+        val day = 1 + ChronoUnit.DAYS.between(tglMul, tglSel)
         return "$day"
     }
 
